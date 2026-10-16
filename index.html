@@ -33,6 +33,7 @@ header.hud{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;j
 .cartbtn{pointer-events:auto;display:flex;align-items:center;gap:8px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
   font:800 15px/1 var(--body);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
 .cartbtn:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cartbtn .carticon{flex:none;display:block}
 .cartbtn .count{font-family:var(--num);font-size:18px;min-width:1.4em;text-align:center;background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 7px}
 .cartbtn.bump{animation:bump .25s ease}
 @keyframes bump{50%{transform:scale(1.15)}}
@@ -99,7 +100,7 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 
 <header class="hud">
   <div class="brand">BaTaKá</div>
-  <button class="cartbtn" id="cartBtn" type="button" aria-label="Ver carrito">BaTaKáS <span class="count" id="cartCount">0</span></button>
+  <button class="cartbtn" id="cartBtn" type="button" aria-label="Ver carrito">BaTaKáS <svg class="carticon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 3.5h2.6l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.3a1.6 1.6 0 0 0 1.6-1.2l1.7-7.3H6.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.6" cy="20" r="1.7" fill="currentColor"/><circle cx="17.4" cy="20" r="1.7" fill="currentColor"/></svg><span class="count" id="cartCount">0</span></button>
 </header>
 
 
@@ -150,7 +151,7 @@ const FLAV = {
   pina:   {name:"BaTaKá",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json", tex:"tex_pina.jpg", x:-1, tilt: 0.26},
   cereza: {name:"BaTaKá", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
 };
-const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, busy:false };
+const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, booms:0 };
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------- audio: "ta-ka" sintetizado ---------------- */
@@ -244,7 +245,7 @@ function refreshHUD(){
   $("fill").style.width=Math.min(100,Math.max(n,best)/maxSteps*100)+"%";
   [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
   const next=CONFIG.escalones.find(s=>n<s.latas);
-  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM!!!</b> −${CONFIG.pctExplosion}% $`
+  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> ${n} BaTaKáS · −${CONFIG.pctExplosion}% $`
     : n===0 ? "6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%"
     : next ? `<b>${n}</b> BaTaKáS · TaKá +<b>${next.latas-n}</b> → −${next.pct}%`
     : `<b>−${discountPct()}%</b> TaKá! · TaKáBOOM → −${CONFIG.pctExplosion}%`;
@@ -257,7 +258,7 @@ function bumpCart(){ const b=$("cartBtn"); b.classList.remove("bump"); void b.of
 /* ---------------- toques ---------------- */
 const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
 canvas.addEventListener("pointerdown",e=>{
-  if(state.busy) return;
+  
   ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1); ray.setFromCamera(ptr,cam);
   const hit=ray.intersectObjects(pickables.filter(o=>cans[o.userData.flav].alive),false)[0];
   const id = hit ? hit.object.userData.flav : (e.clientX < innerWidth/2 ? "pina" : "cereza");
@@ -274,11 +275,11 @@ function tap(id,x,y){
 }
 
 /* ---------------- explosión ---------------- */
-let burst=null;
+let bursts=[];
 function explode(id){
-  state.busy=true; const c=cans[id];
+  const c=cans[id]; if(c.busy) return; c.busy=true;
   setTimeout(()=>{
-    state.exploded=true; c.alive=false; c.root.visible=false; boom(); refreshHUD();
+    state.exploded=true; state.booms++; c.alive=false; c.root.visible=false; boom(); refreshHUD();
     $("flash").animate([{opacity:.9},{opacity:0}],{duration:450,easing:"ease-out"});
     const N=reduce?250:900, pos=new Float32Array(N*3), col=new Float32Array(N*3), vel=[];
     const base=new THREE.Color(FLAV[id].color), pal=[base, new THREE.Color(0xffffff), new THREE.Color(0x2a5cff), new THREE.Color(0x19c26a), new THREE.Color(0xff3fa4), new THREE.Color(0xfff200)];
@@ -290,10 +291,13 @@ function explode(id){
     const pts=new THREE.Points(geo,mat); scene.add(pts);
     const ring=new THREE.Mesh(new THREE.RingGeometry(0.02,0.026,64), new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7,side:THREE.DoubleSide}));
     ring.position.copy(o); scene.add(ring);
-    burst={pts,vel,ring,t:0};
-    setTimeout(openCart, reduce?500:1300);
+    bursts.push({pts,vel,ring,t:0});
+    setTimeout(()=>respawn(id), reduce?300:650);
   }, 120);
 }
+
+function respawn(id){ const c=cans[id]; state.taps[id]=0; c.scale=0.05; c.target=1; c.speed=1.1; c.wob=1;
+  c.alive=true; c.root.visible=true; c.busy=false; refreshHUD(); }
 
 /* ---------------- carrito ---------------- */
 function renderCart(){
@@ -317,7 +321,7 @@ function closeCart(){ $("sheet").classList.remove("open"); }
 $("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
 $("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="TaKá? +1 BaTaKá ↑"; } else { $("note").textContent="TaKá! → WhatsApp +593 96 957 7774"; } });
 function resetCans(){ for(const id in cans){ const c=cans[id]; if(!c.alive){ c.alive=true; c.root.visible=true; state.taps[id]=0; c.scale=0.2; c.target=1; c.speed=1.1; } }
-  if(burst){ scene.remove(burst.pts); scene.remove(burst.ring); burst=null; } state.busy=false; refreshHUD(); }
+  refreshHUD(); }
 
 /* ---------------- animación ---------------- */
 const clock=new THREE.Clock();
@@ -335,10 +339,11 @@ function frame(){
     c.root.position.set(FLAV[id].x*(0.072+0.022*(c.scale-1)+0.012*(os-1)) + (Math.random()-.5)*shake,
                         0.006*Math.sin(t*1.6+c.phase)+(Math.random()-.5)*shake, 0);
   }
-  if(burst){ burst.t+=dt; const p=burst.pts.geometry.attributes.position;
+  for(let bi=bursts.length-1; bi>=0; bi--){ const burst=bursts[bi]; burst.t+=dt; const p=burst.pts.geometry.attributes.position;
     for(let i=0;i<burst.vel.length;i++){ const v=burst.vel[i]; v.y-=0.6*dt; v.multiplyScalar(Math.pow(0.6,dt)); p.array[i*3]+=v.x*dt; p.array[i*3+1]+=v.y*dt; p.array[i*3+2]+=v.z*dt; }
     p.needsUpdate=true; burst.pts.material.opacity=Math.max(0,1-burst.t/2.2);
-    const s=1+burst.t*30; burst.ring.scale.set(s,s,s); burst.ring.material.opacity=Math.max(0,.7-burst.t*1.8); burst.ring.lookAt(cam.position); }
+    const s=1+burst.t*30; burst.ring.scale.set(s,s,s); burst.ring.material.opacity=Math.max(0,.7-burst.t*1.8); burst.ring.lookAt(cam.position);
+    if(burst.t>2.4){ scene.remove(burst.pts); scene.remove(burst.ring); burst.pts.geometry.dispose(); burst.ring.geometry.dispose(); bursts.splice(bi,1); } }
   renderer.render(scene,cam); requestAnimationFrame(frame);
 }
 layout(); refreshHUD();
