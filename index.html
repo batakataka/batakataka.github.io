@@ -145,8 +145,29 @@ const CONFIG = {
   explota: 18,                 // takas sobre UNA lata para que explote
   escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
   pctExplosion: 20,
-  crece: 0.034                 // cuánto crece la lata por taka
+  crece: 0.034,                // cuánto crece la lata por taka
+  sbUrl: "https://xsivyjkzjrxcvxomgfgg.supabase.co",   // registro de visitas/pedidos por origen
+  sbKey: "sb_publishable_cejlzthS0r3MPUay-odAiQ_r_XIzc7C"
 };
+/* ---------------- origen (?o=ig | tt | qr | emb-nombre | ...) ---------------- */
+const ORIGEN = (()=>{
+  const clean=v=>(v||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);
+  let o=clean(new URLSearchParams(location.search).get("o"));
+  if(!o){ const r=document.referrer; o = /instagram/.test(r)?"ig" : /tiktok/.test(r)?"tt" : /facebook|fb\./.test(r)?"fb" : /whatsapp|wa\.me/.test(r)?"wa" : ""; }
+  try{
+    if(o){ localStorage.setItem("bk_o", JSON.stringify({o, t:Date.now()})); }
+    else { const s=JSON.parse(localStorage.getItem("bk_o")||"null"); if(s && Date.now()-s.t < 30*864e5) o=s.o; }
+  }catch(e){}
+  return o||"directo";
+})();
+function logEvento(ev){
+  try{
+    fetch(CONFIG.sbUrl+"/rest/v1/eventos",{method:"POST",keepalive:true,
+      headers:{apikey:CONFIG.sbKey,"Content-Type":"application/json",Prefer:"return=minimal"},
+      body:JSON.stringify(Object.assign({origen:ORIGEN, movil:/Mobi|Android|iPhone/i.test(navigator.userAgent)},ev))}).catch(()=>{});
+  }catch(e){}
+}
+logEvento({tipo:"visita"});
 const FLAV = {
   pina:   {name:"BaTaKá",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json", tex:"tex_pina.jpg", x:-1, tilt: 0.26},
   cereza: {name:"BaTaKá", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
@@ -308,7 +329,7 @@ function renderCart(){
     : `<p style="margin:0;color:#6b5a48">0 BaTaKáS · TaKá? ↑</p>`;
   const sub=totalCans()*CONFIG.precio, pct=discountPct(), d=sub*pct/100;
   const sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
-  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(sub-d)}`;
+  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(sub-d)} · ${ORIGEN}`;
   $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
   $("subtotal").textContent=money(sub); $("discLabel").textContent=`TaKá −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
   $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! −${CONFIG.pctExplosion}%</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
@@ -320,7 +341,9 @@ $("cartBtn").addEventListener("click",()=>{ audio(); openCart(); });
 $("sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeCart(); });
 function closeCart(){ $("sheet").classList.remove("open"); }
 $("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
-$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="TaKá? +1 BaTaKá ↑"; } else { $("note").textContent="TaKá! → WhatsApp +593 96 957 7774"; } });
+$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="TaKá? +1 BaTaKá ↑"; } else { $("note").textContent="TaKá! → WhatsApp +593 96 957 7774";
+    const sub=totalCans()*CONFIG.precio, pct=discountPct();
+    logEvento({tipo:"pedido", pina:state.cart.pina, cereza:state.cart.cereza, latas:totalCans(), total:+(sub*(1-pct/100)).toFixed(2), descuento_pct:pct, booms:state.booms||0}); } });
 function resetCans(){ for(const id in cans){ const c=cans[id]; if(!c.alive){ c.alive=true; c.root.visible=true; state.taps[id]=0; c.scale=0.2; c.target=1; c.speed=1.1; } }
   refreshHUD(); }
 
