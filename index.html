@@ -140,7 +140,7 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 <script>
 /* ---------------- configuración (editable) ---------------- */
 const CONFIG = {
-  precio: 2.00,                // USD por lata (EJEMPLO, cambiar por el precio real)
+  precio: 3.00,                // USD por lata
   whatsapp: "593969577774",    // número de pedidos (Ecuador +593, sin el 0 inicial)
   explota: 18,                 // takas sobre UNA lata para que explote
   escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
@@ -307,7 +307,8 @@ function renderCart(){
     <span class="p">${money(state.cart[id]*CONFIG.precio)}</span></div>`).join("")
     : `<p style="margin:0;color:#6b5a48">0 BaTaKáS · TaKá? ↑</p>`;
   const sub=totalCans()*CONFIG.precio, pct=discountPct(), d=sub*pct/100;
-  const msg=`TaKá! BaTaKá? TaKá ${totalCans()} BaTaKáS TaKá ${money(sub-d)}`;
+  const sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
+  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(sub-d)}`;
   $("pay").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
   $("subtotal").textContent=money(sub); $("discLabel").textContent=`TaKá −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
   $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! −${CONFIG.pctExplosion}%</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
