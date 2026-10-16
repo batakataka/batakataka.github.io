@@ -1,0 +1,102 @@
+[
+  {
+    "id": "09_juego",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:00:00-05:00",
+    "imagenes": [
+      "09_juego.jpg"
+    ],
+    "caption": "TaKá? TaKá! TaKá! 💥\nToca las latas, haz TaKáBOOM y gana −20%.\nbatakataka.github.io (link en bio)\n#bataka #takaboom #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "story_juego",
+    "tipo": "story",
+    "fecha": "2026-10-19T19:30:00-05:00",
+    "imagenes": [
+      "story_juego.jpg"
+    ],
+    "caption": "",
+    "aprobado": false
+  },
+  {
+    "id": "08_pintura_cereza",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:01:00-05:00",
+    "imagenes": [
+      "08_pintura_cereza.jpg"
+    ],
+    "caption": "BaTaKá Cereza 🍒 Hecho en Ecuador.\n#bataka #hechoenecuador #quito",
+    "aprobado": true
+  },
+  {
+    "id": "07_beat",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:02:00-05:00",
+    "imagenes": [
+      "07_beat.jpg"
+    ],
+    "caption": "TaKá · TaKá · TaKá…\nTu ritmo. Tus metas. Tu beat. 🎧\n#bataka #flowstate",
+    "aprobado": true
+  },
+  {
+    "id": "06_promo_descuentos",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:03:00-05:00",
+    "imagenes": [
+      "06_promo_descuentos.jpg"
+    ],
+    "caption": "TaKá $ 💸\n6 BaTaKáS → −10%\n12 BaTaKáS → −15%\nTaKáBOOM → −20%\nJuega en batakataka.github.io (link en bio) 👆\n#bataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "05_nox_formula",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:04:00-05:00",
+    "imagenes": [
+      "05_nox_formula.jpg"
+    ],
+    "caption": "NOx = óxido nítrico.\n159 mg cafeína · 1.000 mg taurina · 741 mg L-citrulina · 0 azúcar.\nEnergía que fluye, no que explota.\n#bataka #nox #energydrink",
+    "aprobado": true
+  },
+  {
+    "id": "04_duo_takataka",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:05:00-05:00",
+    "imagenes": [
+      "04_duo_takataka.jpg"
+    ],
+    "caption": "TaKá TaKá 🍍🍒\n¿Piña o Cereza? ¿Por qué no TaKáTaKá?\n$3 cada BaTaKá.\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "03_hero_cereza",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:06:00-05:00",
+    "imagenes": [
+      "03_hero_cereza.jpg"
+    ],
+    "caption": "TaKá. 🍒\nBaTaKá Cereza — mismo beat, otro color.\nNOx · 500 ml · $3\n#bataka #takataka #flowstate #quito",
+    "aprobado": true
+  },
+  {
+    "id": "02_claim_estado_creativo",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:07:00-05:00",
+    "imagenes": [
+      "02_claim_estado_creativo.jpg"
+    ],
+    "caption": "No es energía de un rato. Es tu ritmo. ✍️\nEstado creativo para seguir el beat de BaTaKá.\n#bataka #flowstate #estadocreativo",
+    "aprobado": true
+  },
+  {
+    "id": "01_hero_pina",
+    "tipo": "post",
+    "fecha": "2026-10-16T15:08:00-05:00",
+    "imagenes": [
+      "01_hero_pina.jpg"
+    ],
+    "caption": "TaKá. 🍍\nBaTaKá Piña — estado creativo para seguir el beat.\nNOx · 500 ml · $3\n#bataka #takataka #flowstate #quito #cumbaya",
+    "aprobado": true
+  }
+]
