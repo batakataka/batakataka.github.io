@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>[hidden]{display:none!important}</style></head><body>
+<title>BaTaKá TaKá</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@600;800&display=swap">
+<style>
+/* Layout: pantalla de juego a todo lo alto, partida en dos mitades de color (piña | cereza); HUD arriba y escalera de descuentos abajo; carrito como hoja que sube. Un solo look deliberado (no cambia con el tema). */
+:root{
+  --pina:#f5a300; --pina-deep:#7a3d00;
+  --cereza:#d0102a; --cereza-deep:#4a0010;
+  --ink:#140d08; --paper:#fff8ec; --chalk:#ffffffcc; --shade:#00000059;
+  --display:"Permanent Marker","Marker Felt","Comic Sans MS",cursive;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --num:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);overflow:hidden;
+  -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+#stage{position:fixed;inset:0;display:grid;grid-template-columns:1fr 1fr}
+#stage .half{position:relative}
+#stage .pina{background:radial-gradient(120% 70% at 70% 45%,var(--pina) 0%,#d97800 45%,var(--pina-deep) 100%)}
+#stage .cereza{background:radial-gradient(120% 70% at 30% 45%,#ff2a45 0%,var(--cereza) 40%,var(--cereza-deep) 100%)}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:manipulation;cursor:pointer}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none}
+
+header.hud{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;
+  padding-top:calc(env(safe-area-inset-top,0px) + 12px);padding-bottom:8px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));pointer-events:none}
+.brand{font-family:var(--display);font-size:clamp(28px,6vw,44px);line-height:1;color:var(--ink);
+  text-shadow:0 2px 0 #ffffff55;transform:rotate(-4deg)}
+.cartbtn{pointer-events:auto;display:flex;align-items:center;gap:8px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+  font:800 15px/1 var(--body);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
+.cartbtn:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cartbtn .count{font-family:var(--num);font-size:18px;min-width:1.4em;text-align:center;background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 7px}
+.cartbtn.bump{animation:bump .25s ease}
+@keyframes bump{50%{transform:scale(1.15)}}
+
+.labels{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 112px);display:grid;grid-template-columns:1fr 1fr;
+  pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lab{text-align:center}
+.lab .name{font-family:var(--display);font-size:clamp(20px,4.6vw,30px);color:var(--ink)}
+.lab .taps{font:800 13px/1.2 var(--num);letter-spacing:.12em;text-transform:uppercase;color:#000000b0}
+.lab .meter{height:6px;width:min(140px,60%);margin:6px auto 0;background:#00000033;border-radius:9px;overflow:hidden}
+.lab .meter i{display:block;height:100%;width:0;background:var(--ink);border-radius:9px;transition:width .15s}
+
+footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 14px);padding-top:12px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:linear-gradient(to top,#000000a6,#00000000)}
+.ladder .hint{text-align:center;font:600 14px/1.3 var(--body);color:var(--chalk);margin-bottom:10px;min-height:1.3em}
+.ladder .hint b{color:#fff}
+.track{position:relative;height:10px;background:#ffffff2e;border-radius:9px;max-width:560px;margin:0 auto}
+.track .fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:9px;background:linear-gradient(90deg,var(--pina),#ff5a2a,var(--cereza));transition:width .2s}
+.steps{position:relative;max-width:560px;margin:8px auto 0;height:34px}
+.step{position:absolute;transform:translateX(-50%);text-align:center;font:800 12px/1.15 var(--num);letter-spacing:.06em;color:#ffffff80;white-space:nowrap}
+.step b{display:block;font-size:17px;letter-spacing:0}
+.step.on{color:#fff}
+.step.boom b{font-family:var(--display);font-weight:400;font-size:13px}
+.step.last{transform:translateX(-100%);text-align:right}
+
+.pop{position:fixed;font-family:var(--display);font-size:clamp(26px,6vw,40px);color:#fff;pointer-events:none;
+  text-shadow:0 3px 0 var(--ink),0 0 18px #0008;transform:translate(-50%,-50%);will-change:transform,opacity}
+
+#intro{position:fixed;left:50%;top:22%;transform:translateX(-50%);font:600 15px/1.4 var(--body);text-align:center;color:var(--ink);
+  background:#fff8ecd9;border:2px solid var(--ink);border-radius:14px;padding:10px 14px;max-width:min(320px,80vw);pointer-events:none;transition:opacity .4s}
+#loading{position:fixed;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:28px;color:var(--ink);pointer-events:none}
+
+/* carrito */
+#sheet{position:fixed;inset:0;display:grid;align-items:end;background:#000000a0;opacity:0;pointer-events:none;transition:opacity .25s}
+#sheet.open{opacity:1;pointer-events:auto}
+.card{background:var(--paper);color:var(--ink);border-radius:22px 22px 0 0;max-width:560px;width:100%;margin:0 auto;
+  padding-top:22px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));
+  transform:translateY(40px);transition:transform .35s cubic-bezier(.2,1.4,.4,1);box-sizing:border-box}
+#sheet.open .card{transform:none}
+.card h2{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 2px;text-wrap:balance}
+.card .sub{margin:0 0 16px;color:#5a4a3a;font-size:14px}
+.badge{display:inline-block;font:800 13px/1 var(--num);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:7px 10px;border-radius:999px;margin-bottom:12px}
+.rows{display:grid;gap:10px;margin-bottom:14px}
+.row{display:grid;grid-template-columns:18px 1fr auto auto;gap:10px;align-items:center;font-size:16px}
+.row .dot{width:18px;height:18px;border-radius:50%;box-shadow:0 0 0 2px #0002 inset}
+.row .q{font:800 17px var(--num);font-variant-numeric:tabular-nums}
+.row .p{font:600 17px var(--num);font-variant-numeric:tabular-nums;min-width:70px;text-align:right}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);background:transparent;color:var(--ink);font:800 16px var(--body);cursor:pointer}
+.tot{border-top:2px dashed #14130f40;padding-top:12px;display:grid;gap:6px;font:600 16px var(--num);font-variant-numeric:tabular-nums}
+.tot div{display:flex;justify-content:space-between}
+.tot .disc{color:#b0101f}
+.tot .grand{font-size:24px;font-weight:800}
+.actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{flex:1 1 160px;text-align:center;text-decoration:none;box-sizing:border-box;border:2px solid var(--ink);border-radius:14px;padding:14px;font:800 16px var(--body);cursor:pointer;background:transparent;color:var(--ink)}
+.btn.main{background:var(--ink);color:var(--paper);box-shadow:0 3px 0 #000}
+.note{font-size:12.5px;color:#6b5a48;margin:12px 0 0;min-height:1em}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.cartbtn.bump{animation:none}}
+</style>
+
+<div id="stage"><div class="half pina"></div><div class="half cereza"></div></div>
+<canvas id="gl" aria-label="Latas de Bataká girando. Toca una para sumarla al carrito."></canvas>
+<div id="flash"></div>
+<div id="loading">TaKá… TaKá…</div>
+
+<header class="hud">
+  <div class="brand">BaTaKá</div>
+  <button class="cartbtn" id="cartBtn" type="button" aria-label="Ver carrito">BaTaKáS <span class="count" id="cartCount">0</span></button>
+</header>
+
+<div id="intro"><b>TaKá</b> = +1 BaTaKá<br><b>TaKáTaKáTaKá…</b> = TaKáBOOM! <b>−$</b></div>
+
+<div class="labels" aria-live="polite">
+  <div class="lab"><div class="name">BaTaKá</div><div class="taps" id="tapsPina">0 TaKáS</div><div class="meter"><i id="mPina"></i></div></div>
+  <div class="lab"><div class="name">BaTaKá</div><div class="taps" id="tapsCereza">0 TaKáS</div><div class="meter"><i id="mCereza"></i></div></div>
+</div>
+
+<footer class="ladder">
+  <div class="hint" id="hint">6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%</div>
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <div class="steps" id="steps"></div>
+</footer>
+
+<div id="sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="card">
+    <h2 id="cartTitle">TuS BaTaKáS</h2>
+    <p class="sub" id="cartSub">TaKá!</p>
+    <div id="badgeWrap"></div>
+    <div class="rows" id="rows"></div>
+    <div class="tot">
+      <div><span>BaTaKáS $</span><span id="subtotal">$0.00</span></div>
+      <div class="disc"><span id="discLabel">TaKá −%</span><span id="disc">−$0.00</span></div>
+      <div class="grand"><span>TaKá $</span><span id="total">$0.00</span></div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="again" type="button">TaKá TaKá ↺</button>
+      <a class="btn main" id="pay" href="https://wa.me/593969577774" target="_blank" rel="noopener">TaKá! $ →</a>
+    </div>
+    <p class="note" id="note"></p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+/* ---------------- configuración (editable) ---------------- */
+const CONFIG = {
+  precio: 2.00,                // USD por lata (EJEMPLO, cambiar por el precio real)
+  whatsapp: "593969577774",    // número de pedidos (Ecuador +593, sin el 0 inicial)
+  explota: 18,                 // takas sobre UNA lata para que explote
+  escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
+  pctExplosion: 20,
+  crece: 0.034                 // cuánto crece la lata por taka
+};
+const FLAV = {
+  pina:   {name:"BaTaKá",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json", tex:"tex_pina.jpg", x:-1, tilt: 0.26},
+  cereza: {name:"BaTaKá", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
+};
+const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, busy:false };
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------------- audio: "ta-ka" sintetizado ---------------- */
+let AC=null, master=null;
+function audio(){ if(!AC){ AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.gain.value=0.9;
+  const comp=AC.createDynamicsCompressor(); master.connect(comp); comp.connect(AC.destination);} if(AC.state==="suspended") AC.resume(); return AC; }
+function noiseBuf(sec){ const b=AC.createBuffer(1,AC.sampleRate*sec,AC.sampleRate), d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; return b; }
+function hit(t, f, dur, bright, gain){
+  const o=AC.createOscillator(), g=AC.createGain(); o.type="triangle"; o.frequency.setValueAtTime(f,t); o.frequency.exponentialRampToValueAtTime(f*0.55,t+dur);
+  g.gain.setValueAtTime(gain,t); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); o.connect(g); g.connect(master); o.start(t); o.stop(t+dur+0.02);
+  const n=AC.createBufferSource(); n.buffer=noiseBuf(0.08); const bp=AC.createBiquadFilter(); bp.type="bandpass"; bp.frequency.value=bright; bp.Q.value=1.4;
+  const ng=AC.createGain(); ng.gain.setValueAtTime(gain*0.9,t); ng.gain.exponentialRampToValueAtTime(0.0001,t+0.05); n.connect(bp); bp.connect(ng); ng.connect(master); n.start(t);
+}
+function taka(level){ audio(); const t=AC.currentTime, up=1+level*0.025;
+  hit(t, 820*up, 0.09, 3800*up, 0.55);          // "ta"
+  hit(t+0.085, 520*up, 0.13, 2200*up, 0.7);     // "ka"
+}
+function boom(){ audio(); const t=AC.currentTime;
+  const o=AC.createOscillator(), g=AC.createGain(); o.type="sine"; o.frequency.setValueAtTime(120,t); o.frequency.exponentialRampToValueAtTime(32,t+0.9);
+  g.gain.setValueAtTime(1.0,t); g.gain.exponentialRampToValueAtTime(0.0001,t+1.2); o.connect(g); g.connect(master); o.start(t); o.stop(t+1.3);
+  const n=AC.createBufferSource(); n.buffer=noiseBuf(1.6); const lp=AC.createBiquadFilter(); lp.type="lowpass"; lp.frequency.setValueAtTime(5000,t); lp.frequency.exponentialRampToValueAtTime(300,t+1.2);
+  const ng=AC.createGain(); ng.gain.setValueAtTime(0.9,t); ng.gain.exponentialRampToValueAtTime(0.0001,t+1.5); n.connect(lp); lp.connect(ng); ng.connect(master); n.start(t);
+  for(let i=0;i<70;i++){ const tt=t+0.25+Math.random()*1.3, s=AC.createBufferSource(); s.buffer=noiseBuf(0.02); const hp=AC.createBiquadFilter(); hp.type="highpass"; hp.frequency.value=4000;
+    const sg=AC.createGain(); sg.gain.setValueAtTime(0.12*Math.random(),tt); sg.gain.exponentialRampToValueAtTime(0.0001,tt+0.02); s.connect(hp); hp.connect(sg); sg.connect(master); s.start(tt); }
+}
+
+/* ---------------- three.js ---------------- */
+const canvas=document.getElementById("gl");
+const renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05;
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+const cam=new THREE.PerspectiveCamera(30,1,0.01,10);
+scene.add(new THREE.HemisphereLight(0xffffff,0x553311,0.6));
+const key=new THREE.DirectionalLight(0xffffff,1.6); key.position.set(-0.6,0.8,1.2); scene.add(key);
+const rim=new THREE.DirectionalLight(0xffffff,1.2); rim.position.set(0.8,0.4,-0.8); scene.add(rim);
+
+const cans={};      // por sabor: {root, tiltG, spin, mesh, scale, target, wob, alive}
+const pickables=[];
+const loader=new THREE.GLTFLoader();
+/* El modelo viene como JSON {gltf, bin(base64)}: se arma un GLB en memoria y se parsea sin pedir
+   data:/blob: por red (el visor solo permite cargar archivos propios). La etiqueta se carga aparte como imagen. */
+function toGLB(gltf, bin){
+  const enc=new TextEncoder(); let js=enc.encode(JSON.stringify(gltf)); const jp=(4-js.length%4)%4, bp=(4-bin.length%4)%4;
+  const total=12+8+js.length+jp+8+bin.length+bp, out=new Uint8Array(total), dv=new DataView(out.buffer);
+  dv.setUint32(0,0x46546C67,true); dv.setUint32(4,2,true); dv.setUint32(8,total,true);
+  dv.setUint32(12,js.length+jp,true); dv.setUint32(16,0x4E4F534A,true); out.set(js,20); out.fill(0x20,20+js.length,20+js.length+jp);
+  let o=20+js.length+jp; dv.setUint32(o,bin.length+bp,true); dv.setUint32(o+4,0x004E4942,true); out.set(bin,o+8);
+  return out.buffer;
+}
+function loadTex(url){ return new Promise((res,rej)=>new THREE.TextureLoader().load(url,t=>{ t.flipY=false; t.encoding=THREE.sRGBEncoding;
+  t.wrapS=t.wrapT=THREE.RepeatWrapping; t.anisotropy=renderer.capabilities.getMaxAnisotropy(); res(t); },undefined,rej)); }
+async function loadCan(id){
+  const [data, tex] = await Promise.all([fetch(FLAV[id].glb).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }), loadTex(FLAV[id].tex)]);
+  const raw=atob(data.bin), bin=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) bin[i]=raw.charCodeAt(i);
+  const g=await new Promise((res,rej)=>loader.parse(toGLB(data.gltf,bin),"",res,rej));
+  const root=new THREE.Group(), tiltG=new THREE.Group(), spin=new THREE.Group();
+  const m=g.scene; m.position.y=-0.084;   // centro de la lata en el pivote
+  m.traverse(o=>{ if(o.isMesh){ o.userData.flav=id; pickables.push(o);
+    const mats=Array.isArray(o.material)?o.material:[o.material];
+    mats.forEach(mt=>{ if(mt && /^Etiqueta/.test(mt.name)){ mt.map=tex; mt.color.set(0xffffff); mt.needsUpdate=true; } }); } });
+  spin.add(m); tiltG.add(spin); root.add(tiltG); tiltG.rotation.z=FLAV[id].tilt; tiltG.rotation.x=0.08;
+  scene.add(root);
+  cans[id]={root,tiltG,spin,mesh:m,scale:1,target:1,wob:0,alive:true,speed:1.1,phase:id==="pina"?0:Math.PI};
+}
+
+function layout(){
+  const w=innerWidth, h=innerHeight; renderer.setSize(w,h,false); cam.aspect=w/h;
+  // encajar dos latas (ancho ~0.30 m) y alto ~0.30 m
+  const needW=0.37, needH=0.36, vfov=THREE.MathUtils.degToRad(cam.fov);
+  const dH=(needH/2)/Math.tan(vfov/2), dW=(needW/2)/(Math.tan(vfov/2)*cam.aspect);
+  cam.position.set(0,0.012,Math.max(dH,dW)); cam.lookAt(0,0.0,0); cam.updateProjectionMatrix();
+}
+addEventListener("resize",layout);
+
+/* ---------------- UI ---------------- */
+const $=id=>document.getElementById(id);
+const steps=[...CONFIG.escalones.map(s=>({at:s.latas,txt:"−"+s.pct+"%",lab:s.latas+" BaTaKáS"})),{at:CONFIG.explota,txt:"TaKáBOOM",lab:"−"+CONFIG.pctExplosion+"%",boom:true}];
+const maxSteps=CONFIG.explota;
+$("steps").innerHTML=steps.map(s=>`<div class="step${s.boom?' boom last':''}" style="left:${(s.at/maxSteps*100).toFixed(1)}%"><b>${s.txt}</b>${s.lab}</div>`).join("");
+function totalCans(){ return state.cart.pina+state.cart.cereza; }
+function discountPct(){ if(state.exploded) return CONFIG.pctExplosion; let p=0; for(const s of CONFIG.escalones) if(totalCans()>=s.latas) p=s.pct; return p; }
+function money(v){ return "$"+v.toFixed(2); }
+function refreshHUD(){
+  const n=totalCans(); $("cartCount").textContent=n;
+  for(const id of ["pina","cereza"]){ const t=state.taps[id];
+    $(id==="pina"?"tapsPina":"tapsCereza").textContent=t+(t===1?" TaKá":" TaKáS");
+    $(id==="pina"?"mPina":"mCereza").style.width=Math.min(100,t/CONFIG.explota*100)+"%"; }
+  const best=Math.max(state.taps.pina,state.taps.cereza);
+  $("fill").style.width=Math.min(100,Math.max(n,best)/maxSteps*100)+"%";
+  [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
+  const next=CONFIG.escalones.find(s=>n<s.latas);
+  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM!!!</b> −${CONFIG.pctExplosion}% $`
+    : n===0 ? "6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%"
+    : next ? `<b>${n}</b> BaTaKáS · TaKá +<b>${next.latas-n}</b> → −${next.pct}%`
+    : `<b>−${discountPct()}%</b> TaKá! · TaKáBOOM → −${CONFIG.pctExplosion}%`;
+}
+function popText(x,y,txt){ const el=document.createElement("div"); el.className="pop"; el.textContent=txt; el.style.left=x+"px"; el.style.top=y+"px"; document.body.appendChild(el);
+  const dx=(Math.random()-.5)*80, rot=(Math.random()-.5)*30;
+  el.animate([{transform:`translate(-50%,-50%) scale(.6) rotate(${rot}deg)`,opacity:1},{transform:`translate(calc(-50% + ${dx}px),-160%) scale(1.15) rotate(${rot}deg)`,opacity:0}],{duration:reduce?400:700,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=()=>el.remove(); }
+function bumpCart(){ const b=$("cartBtn"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); }
+
+/* ---------------- toques ---------------- */
+const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
+canvas.addEventListener("pointerdown",e=>{
+  if(state.busy) return;
+  $("intro").style.opacity=0;
+  ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1); ray.setFromCamera(ptr,cam);
+  const hit=ray.intersectObjects(pickables.filter(o=>cans[o.userData.flav].alive),false)[0];
+  const id = hit ? hit.object.userData.flav : (e.clientX < innerWidth/2 ? "pina" : "cereza");
+  if(!cans[id]||!cans[id].alive) return;
+  tap(id, e.clientX, e.clientY);
+});
+function tap(id,x,y){
+  const c=cans[id]; state.taps[id]++; state.cart[id]++;
+  taka(state.taps[id]); popText(x,y,"TaKá!"); bumpCart();
+  c.target=1+state.taps[id]*CONFIG.crece; c.wob=1; c.speed=Math.min(9,c.speed+0.45);
+  if(navigator.vibrate) try{navigator.vibrate(12)}catch(_){}
+  refreshHUD();
+  if(state.taps[id]>=CONFIG.explota) explode(id);
+}
+
+/* ---------------- explosión ---------------- */
+let burst=null;
+function explode(id){
+  state.busy=true; const c=cans[id];
+  setTimeout(()=>{
+    state.exploded=true; c.alive=false; c.root.visible=false; boom(); refreshHUD();
+    $("flash").animate([{opacity:.9},{opacity:0}],{duration:450,easing:"ease-out"});
+    const N=reduce?250:900, pos=new Float32Array(N*3), col=new Float32Array(N*3), vel=[];
+    const base=new THREE.Color(FLAV[id].color), pal=[base, new THREE.Color(0xffffff), new THREE.Color(0x2a5cff), new THREE.Color(0x19c26a), new THREE.Color(0xff3fa4), new THREE.Color(0xfff200)];
+    const o=new THREE.Vector3(); c.root.getWorldPosition(o);
+    for(let i=0;i<N;i++){ pos.set([o.x,o.y,o.z],i*3); const k=pal[i%3===0?0:Math.floor(Math.random()*pal.length)]; col.set([k.r,k.g,k.b],i*3);
+      const v=new THREE.Vector3().randomDirection().multiplyScalar(0.25+Math.random()*0.9); v.y+=0.25; vel.push(v); }
+    const geo=new THREE.BufferGeometry(); geo.setAttribute("position",new THREE.BufferAttribute(pos,3)); geo.setAttribute("color",new THREE.BufferAttribute(col,3));
+    const mat=new THREE.PointsMaterial({size:0.009,vertexColors:true,transparent:true,depthWrite:false});
+    const pts=new THREE.Points(geo,mat); scene.add(pts);
+    const ring=new THREE.Mesh(new THREE.RingGeometry(0.02,0.026,64), new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7,side:THREE.DoubleSide}));
+    ring.position.copy(o); scene.add(ring);
+    burst={pts,vel,ring,t:0};
+    setTimeout(openCart, reduce?500:1300);
+  }, 120);
+}
+
+/* ---------------- carrito ---------------- */
+function renderCart(){
+  const rows=["pina","cereza"].filter(id=>state.cart[id]>0);
+  $("rows").innerHTML = rows.length ? rows.map(id=>`<div class="row"><span class="dot" style="background:${FLAV[id].css}"></span><span>${FLAV[id].name}</span>
+    <span class="qty"><button type="button" data-id="${id}" data-d="-1" aria-label="Quitar una">−</button><span class="q">${state.cart[id]}</span><button type="button" data-id="${id}" data-d="1" aria-label="Agregar una">+</button></span>
+    <span class="p">${money(state.cart[id]*CONFIG.precio)}</span></div>`).join("")
+    : `<p style="margin:0;color:#6b5a48">0 BaTaKáS · TaKá? ↑</p>`;
+  const sub=totalCans()*CONFIG.precio, pct=discountPct(), d=sub*pct/100;
+  const msg=`TaKá! BaTaKá? TaKá ${totalCans()} BaTaKáS TaKá ${money(sub-d)}`;
+  $("pay").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  $("subtotal").textContent=money(sub); $("discLabel").textContent=`TaKá −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
+  $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! −${CONFIG.pctExplosion}%</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
+  $("cartSub").textContent = `${totalCans()} BaTaKáS · ${state.taps.pina+state.taps.cereza} TaKáS · ${money(CONFIG.precio)} × BaTaKá`;
+}
+$("rows").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id; state.cart[id]=Math.max(0,state.cart[id]+(+b.dataset.d)); renderCart(); refreshHUD(); });
+function openCart(){ renderCart(); $("note").textContent=""; $("sheet").classList.add("open"); }
+$("cartBtn").addEventListener("click",()=>{ audio(); openCart(); });
+$("sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeCart(); });
+function closeCart(){ $("sheet").classList.remove("open"); }
+$("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
+$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="TaKá? +1 BaTaKá ↑"; } else { $("note").textContent="TaKá! → WhatsApp +593 96 957 7774"; } });
+function resetCans(){ for(const id in cans){ const c=cans[id]; if(!c.alive){ c.alive=true; c.root.visible=true; state.taps[id]=0; c.scale=0.2; c.target=1; c.speed=1.1; } }
+  if(burst){ scene.remove(burst.pts); scene.remove(burst.ring); burst=null; } state.busy=false; refreshHUD(); }
+
+/* ---------------- animación ---------------- */
+const clock=new THREE.Clock();
+function frame(){
+  const dt=Math.min(clock.getDelta(),0.05), t=clock.elapsedTime;
+  for(const id in cans){ const c=cans[id];
+    c.scale+=(c.target-c.scale)*Math.min(1,dt*12);
+    c.wob*=Math.pow(0.02,dt);
+    const squash=1+0.12*c.wob*Math.sin(t*38);
+    c.root.scale.set(c.scale/Math.sqrt(squash), c.scale*squash, c.scale/Math.sqrt(squash));
+    c.speed+= (1.1-c.speed)*Math.min(1,dt*0.6);
+    c.spin.rotation.y += dt*c.speed;
+    const other=cans[id==="pina"?"cereza":"pina"], os=other&&other.alive?other.scale:1;
+    const shake=reduce?0:Math.max(0,(state.taps[id]/CONFIG.explota)-0.6)*0.004;
+    c.root.position.set(FLAV[id].x*(0.072+0.022*(c.scale-1)+0.012*(os-1)) + (Math.random()-.5)*shake,
+                        0.006*Math.sin(t*1.6+c.phase)+(Math.random()-.5)*shake, 0);
+  }
+  if(burst){ burst.t+=dt; const p=burst.pts.geometry.attributes.position;
+    for(let i=0;i<burst.vel.length;i++){ const v=burst.vel[i]; v.y-=0.6*dt; v.multiplyScalar(Math.pow(0.6,dt)); p.array[i*3]+=v.x*dt; p.array[i*3+1]+=v.y*dt; p.array[i*3+2]+=v.z*dt; }
+    p.needsUpdate=true; burst.pts.material.opacity=Math.max(0,1-burst.t/2.2);
+    const s=1+burst.t*30; burst.ring.scale.set(s,s,s); burst.ring.material.opacity=Math.max(0,.7-burst.t*1.8); burst.ring.lookAt(cam.position); }
+  renderer.render(scene,cam); requestAnimationFrame(frame);
+}
+layout(); refreshHUD();
+Promise.all([loadCan("pina"),loadCan("cereza")]).then(()=>{ $("loading").hidden=true; frame(); })
+  .catch(err=>{ $("loading").textContent="TaKá…? ↻ (recarga la página)"; console.error(err); });
+</script>
+</body></html>
