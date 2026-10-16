@@ -62,8 +62,6 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 .pop{position:fixed;font-family:var(--display);font-size:clamp(26px,6vw,40px);color:#fff;pointer-events:none;
   text-shadow:0 3px 0 var(--ink),0 0 18px #0008;transform:translate(-50%,-50%);will-change:transform,opacity}
 
-#intro{position:fixed;left:50%;top:22%;transform:translateX(-50%);font:600 15px/1.4 var(--body);text-align:center;color:var(--ink);
-  background:#fff8ecd9;border:2px solid var(--ink);border-radius:14px;padding:10px 14px;max-width:min(320px,80vw);pointer-events:none;transition:opacity .4s}
 #loading{position:fixed;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:28px;color:var(--ink);pointer-events:none}
 
 /* carrito */
@@ -104,7 +102,6 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
   <button class="cartbtn" id="cartBtn" type="button" aria-label="Ver carrito">BaTaKáS <span class="count" id="cartCount">0</span></button>
 </header>
 
-<div id="intro"><b>TaKá</b> = +1 BaTaKá<br><b>TaKáTaKáTaKá…</b> = TaKáBOOM! <b>−$</b></div>
 
 <div class="labels" aria-live="polite">
   <div class="lab"><div class="name">BaTaKá</div><div class="taps" id="tapsPina">0 TaKáS</div><div class="meter"><i id="mPina"></i></div></div>
@@ -261,7 +258,6 @@ function bumpCart(){ const b=$("cartBtn"); b.classList.remove("bump"); void b.of
 const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
 canvas.addEventListener("pointerdown",e=>{
   if(state.busy) return;
-  $("intro").style.opacity=0;
   ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1); ray.setFromCamera(ptr,cam);
   const hit=ray.intersectObjects(pickables.filter(o=>cans[o.userData.flav].alive),false)[0];
   const id = hit ? hit.object.userData.flav : (e.clientX < innerWidth/2 ? "pina" : "cereza");
