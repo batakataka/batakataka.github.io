@@ -98,5 +98,379 @@
     ],
     "caption": "TaKá. 🍍\nBaTaKá · 500 ml · $3\n#bataka #takataka",
     "aprobado": true
+  },
+  {
+    "id": "w43_s_lun_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-19T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_lun_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_lun_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-19T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_lun_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p1_lun_vinilo",
+    "tipo": "post",
+    "fecha": "2026-10-19T19:00:00-05:00",
+    "imagenes": [
+      "w43_p1_lun_vinilo.jpg"
+    ],
+    "caption": "TaKá · TaKá · TaKáTaKá 🍍🍒\nA → TaKá · B → TaKáTaKá\nBPM = BaTaKá\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_lun_3_1915",
+    "tipo": "story",
+    "fecha": "2026-10-19T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_lun_3_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mar_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-20T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_mar_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mar_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-20T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_mar_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p2_mar_pina",
+    "tipo": "post",
+    "fecha": "2026-10-20T19:00:00-05:00",
+    "imagenes": [
+      "w43_p2_mar_pina.jpg"
+    ],
+    "caption": "TaKá. 🍍\n1 BaTaKá = $3\nBaTaKá → TaKáTaKá\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mar_3_1915",
+    "tipo": "story",
+    "fecha": "2026-10-20T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_mar_3_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mie_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-21T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_mie_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mie_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-21T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_mie_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p3_mie_24h",
+    "tipo": "carrusel",
+    "fecha": "2026-10-21T19:00:00-05:00",
+    "imagenes": [
+      "w43_p3_mie_24h_1.jpg",
+      "w43_p3_mie_24h_2.jpg",
+      "w43_p3_mie_24h_3.jpg",
+      "w43_p3_mie_24h_4.jpg",
+      "w43_p3_mie_24h_5.jpg"
+    ],
+    "caption": "TaKá 24 h → → → 🍍🍒\n08:00 TaKá.\n13:00 TaKáTaKá\n19:00 TaKáTaKáTaKá\n23:59 TaKáBOOM → −20% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_mie_3_1915",
+    "tipo": "story",
+    "fecha": "2026-10-21T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_mie_3_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_jue_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-22T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_jue_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_jue_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-22T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_jue_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p4_jue_nox",
+    "tipo": "post",
+    "fecha": "2026-10-22T19:00:00-05:00",
+    "imagenes": [
+      "w43_p4_jue_nox.jpg"
+    ],
+    "caption": "N = O → NOx 🍒\nNOx → TaKáTaKá\nTaKá 159 mg · TaKá 1.000 mg · TaKá 741 mg\nbatakataka.github.io/?o=ig\n#bataka #nox",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_jue_3_1915",
+    "tipo": "story",
+    "fecha": "2026-10-22T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_jue_3_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_vie_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-23T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_vie_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_vie_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-23T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_vie_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p5_vie_cereza",
+    "tipo": "post",
+    "fecha": "2026-10-23T19:00:00-05:00",
+    "imagenes": [
+      "w43_p5_vie_cereza.jpg"
+    ],
+    "caption": "TaKá · TaKá · TaKá 🍒\n1 BaTaKá = $3\n6 BaTaKáS → −10% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_vie_3_1915",
+    "tipo": "story",
+    "fecha": "2026-10-23T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_vie_3_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_vie_4_2100",
+    "tipo": "story",
+    "fecha": "2026-10-23T21:00:00-05:00",
+    "imagenes": [
+      "w43_s_vie_4_2100.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_vie_5_2101",
+    "tipo": "story",
+    "fecha": "2026-10-23T21:01:00-05:00",
+    "imagenes": [
+      "w43_s_vie_5_2101.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-24T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_sab_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_2_1100",
+    "tipo": "story",
+    "fecha": "2026-10-24T11:00:00-05:00",
+    "imagenes": [
+      "w43_s_sab_2_1100.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_3_1101",
+    "tipo": "story",
+    "fecha": "2026-10-24T11:01:00-05:00",
+    "imagenes": [
+      "w43_s_sab_3_1101.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_4_1102",
+    "tipo": "story",
+    "fecha": "2026-10-24T11:02:00-05:00",
+    "imagenes": [
+      "w43_s_sab_4_1102.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_5_1300",
+    "tipo": "story",
+    "fecha": "2026-10-24T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_sab_5_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p6_sab_escalones",
+    "tipo": "post",
+    "fecha": "2026-10-24T19:00:00-05:00",
+    "imagenes": [
+      "w43_p6_sab_escalones.jpg"
+    ],
+    "caption": "TaKá $ 🏷️\n1 BaTaKá = $3\n6 BaTaKáS → −10% = $16.20\n12 BaTaKáS → −15% = $30.60\nTaKáBOOM → −20%\nbatakataka.github.io/?o=ig\n#bataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_6_1915",
+    "tipo": "story",
+    "fecha": "2026-10-24T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_sab_6_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_sab_7_2100",
+    "tipo": "story",
+    "fecha": "2026-10-24T21:00:00-05:00",
+    "imagenes": [
+      "w43_s_sab_7_2100.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_1_0830",
+    "tipo": "story",
+    "fecha": "2026-10-25T08:30:00-05:00",
+    "imagenes": [
+      "w43_s_dom_1_0830.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_2_1300",
+    "tipo": "story",
+    "fecha": "2026-10-25T13:00:00-05:00",
+    "imagenes": [
+      "w43_s_dom_2_1300.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_3_1600",
+    "tipo": "story",
+    "fecha": "2026-10-25T16:00:00-05:00",
+    "imagenes": [
+      "w43_s_dom_3_1600.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_4_1601",
+    "tipo": "story",
+    "fecha": "2026-10-25T16:01:00-05:00",
+    "imagenes": [
+      "w43_s_dom_4_1601.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_p7_dom_juego",
+    "tipo": "post",
+    "fecha": "2026-10-25T19:00:00-05:00",
+    "imagenes": [
+      "w43_p7_dom_juego.jpg"
+    ],
+    "caption": "TaKá? ↓ 🍍🍒\nTaKá × 18 = TaKáBOOM\nTaKáBOOM → −20% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_5_1915",
+    "tipo": "story",
+    "fecha": "2026-10-25T19:15:00-05:00",
+    "imagenes": [
+      "w43_s_dom_5_1915.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
+  },
+  {
+    "id": "w43_s_dom_6_2230",
+    "tipo": "story",
+    "fecha": "2026-10-25T22:30:00-05:00",
+    "imagenes": [
+      "w43_s_dom_6_2230.jpg"
+    ],
+    "caption": "",
+    "aprobado": true
   }
 ]
