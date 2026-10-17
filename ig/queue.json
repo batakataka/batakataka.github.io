@@ -100,6 +100,29 @@
     "aprobado": true
   },
   {
+    "id": "S1019_semana_taka",
+    "tipo": "post",
+    "fecha": "2026-10-19T19:00:00-05:00",
+    "imagenes": [
+      "S1019_semana_taka.jpg"
+    ],
+    "caption": "TaKá → TaKá → TaKá → TaKáTaKá → TaKáBOOM 🍍\n1 BaTaKá = $3\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "S1022_elige",
+    "tipo": "carrusel",
+    "fecha": "2026-10-22T19:00:00-05:00",
+    "imagenes": [
+      "S1022_elige_1.jpg",
+      "S1022_elige_2.jpg",
+      "S1022_elige_3.jpg",
+      "S1022_elige_4.jpg"
+    ],
+    "caption": "TaKá 🍍 ? TaKá 🍒 ?\n🍍 + 🍒 = TaKáTaKá\n6 BaTaKáS → −10% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
     "id": "1019_ritmo_secuenciador",
     "tipo": "post",
     "fecha": "2026-10-19T19:00:00-05:00",
