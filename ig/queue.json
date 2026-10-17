@@ -100,26 +100,77 @@
     "aprobado": true
   },
   {
-    "id": "S1019_semana_taka",
+    "id": "1019_ritmo_secuenciador",
     "tipo": "post",
     "fecha": "2026-10-19T19:00:00-05:00",
     "imagenes": [
-      "S1019_semana_taka.jpg"
+      "1019_ritmo_secuenciador.jpg"
     ],
-    "caption": "TaKá → TaKá → TaKá → TaKáTaKá → TaKáBOOM 🍍\n1 BaTaKá = $3\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "caption": "TaKá · TaKá · TaKáTaKá · TaKáBOOM 🍍🍒\nBaTaKá = TaKá × 16\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
     "aprobado": true
   },
   {
-    "id": "S1022_elige",
+    "id": "1020_producto_pina",
+    "tipo": "post",
+    "fecha": "2026-10-20T19:00:00-05:00",
+    "imagenes": [
+      "1020_producto_pina.jpg"
+    ],
+    "caption": "TaKá. 🍍\nNOx · 500 ml · $3\nBaTaKá → TaKáTaKá\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "1021_diccionario",
     "tipo": "carrusel",
+    "fecha": "2026-10-21T19:00:00-05:00",
+    "imagenes": [
+      "1021_diccionario_1.jpg",
+      "1021_diccionario_2.jpg",
+      "1021_diccionario_3.jpg",
+      "1021_diccionario_4.jpg",
+      "1021_diccionario_5.jpg"
+    ],
+    "caption": "TaKá? TaKá. TaKáTaKá! TaKáBOOM!!! 🍍🍒\nTaKá → → → →\nTaKá × 18 = TaKáBOOM → −20% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "1022_nox_cero",
+    "tipo": "post",
     "fecha": "2026-10-22T19:00:00-05:00",
     "imagenes": [
-      "S1022_elige_1.jpg",
-      "S1022_elige_2.jpg",
-      "S1022_elige_3.jpg",
-      "S1022_elige_4.jpg"
+      "1022_nox_cero.jpg"
     ],
-    "caption": "TaKá 🍍 ? TaKá 🍒 ?\n🍍 + 🍒 = TaKáTaKá\n6 BaTaKáS → −10% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "caption": "NOx → TaKáTaKá 🍒\n0 · 0 · 0\nTaKá 159 mg · TaKá 1.000 mg · TaKá 741 mg\nbatakataka.github.io/?o=ig\n#bataka #nox",
+    "aprobado": true
+  },
+  {
+    "id": "1023_producto_cereza",
+    "tipo": "post",
+    "fecha": "2026-10-23T19:00:00-05:00",
+    "imagenes": [
+      "1023_producto_cereza.jpg"
+    ],
+    "caption": "TaKá. TaKá. TaKá. 🍒\nBaTaKá × 3 = $9\n6 BaTaKáS → −10% 🏷️\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "1024_promo_ticket",
+    "tipo": "post",
+    "fecha": "2026-10-24T19:00:00-05:00",
+    "imagenes": [
+      "1024_promo_ticket.jpg"
+    ],
+    "caption": "TaKá $ 🏷️\n6 × $3 = $18 → −10% = $16.20\n12 × $3 = $36 → −15% = $30.60\nTaKáBOOM → −20%\nbatakataka.github.io/?o=ig\n#bataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "1025_comunidad_responde",
+    "tipo": "post",
+    "fecha": "2026-10-25T19:00:00-05:00",
+    "imagenes": [
+      "1025_comunidad_responde.jpg"
+    ],
+    "caption": "TaKá? ↓ 🍍🍒\nTaKá + TaKá + TaKá = TaKáBOOM\n−20% 🏷️ → batakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
     "aprobado": true
   }
 ]
