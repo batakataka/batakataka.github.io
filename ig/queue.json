@@ -851,5 +851,55 @@
     ],
     "caption": "TaKá… 🍍 → 🍒\nTaKá TaKá TaKá → BaTaKá!\nbatakataka.github.io/?o=ig\n#bataka #takataka",
     "aprobado": true
+  },
+  {
+    "id": "inst_maracas",
+    "tipo": "post",
+    "fecha": "2026-10-17T23:35:00-05:00",
+    "imagenes": [
+      "inst_maracas.jpg"
+    ],
+    "caption": "TaKá-TaKá-TaKá 🍍🍒\nBaTaKá → TaKá!\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "inst_bateria",
+    "tipo": "post",
+    "fecha": "2026-10-17T23:36:00-05:00",
+    "imagenes": [
+      "inst_bateria.jpg"
+    ],
+    "caption": "TaKá TaKá TaKáBOOM 🍒🍍\nBaTaKáS × 9 = TaKáBOOM\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "inst_jack",
+    "tipo": "post",
+    "fecha": "2026-10-17T23:37:00-05:00",
+    "imagenes": [
+      "inst_jack.jpg"
+    ],
+    "caption": "🍒 → TaKáBOOM\nTaKá. TaKá. TaKá.\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
+  },
+  {
+    "id": "inst_pad",
+    "tipo": "post",
+    "fecha": "2026-10-17T23:38:00-05:00",
+    "imagenes": [
+      "inst_pad.jpg"
+    ],
+    "caption": "TaKá. 🍍\nTaKá TaKá → BaTaKá\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "inst_guitarra",
+    "tipo": "post",
+    "fecha": "2026-10-17T23:39:00-05:00",
+    "imagenes": [
+      "inst_guitarra.jpg"
+    ],
+    "caption": "TaKá!!! 🍒\nTaKá × 18 = TaKáBOOM\nbatakataka.github.io/?o=ig\n#bataka #takataka #takaboom",
+    "aprobado": true
   }
 ]
