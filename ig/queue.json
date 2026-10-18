@@ -837,5 +837,19 @@
     ],
     "caption": "TaKá $ 🏷️\n1 BaTaKá = $3\n6 BaTaKáS = $16.20\n12 BaTaKáS = $30.60\nTaKáBOOM → −20%\nbatakataka.github.io/?o=ig\n#bataka #takaboom",
     "aprobado": true
+  },
+  {
+    "id": "inst_carrusel_piano",
+    "tipo": "carrusel",
+    "fecha": "2026-10-17T23:30:00-05:00",
+    "imagenes": [
+      "inst_carrusel_piano_1.jpg",
+      "inst_carrusel_piano_2.jpg",
+      "inst_carrusel_piano_3.jpg",
+      "inst_carrusel_piano_4.jpg",
+      "inst_carrusel_piano_5.jpg"
+    ],
+    "caption": "TaKá… 🍍 → 🍒\nTaKá TaKá TaKá → BaTaKá!\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
   }
 ]
