@@ -805,5 +805,37 @@
     ],
     "caption": "",
     "aprobado": true
+  },
+  {
+    "id": "R1_carrusel_takaboom",
+    "tipo": "carrusel",
+    "fecha": "2026-10-17T19:10:00-05:00",
+    "imagenes": [
+      "R1_carrusel_takaboom_1.jpg",
+      "R1_carrusel_takaboom_2.jpg",
+      "R1_carrusel_takaboom_3.jpg"
+    ],
+    "caption": "TaKá? → TaKá ×18 → TaKáBOOM 🍍🍒\n−20% 🏷️ → batakataka.github.io/?o=ig\n#bataka #takaboom #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "R2_pintura_pina",
+    "tipo": "post",
+    "fecha": "2026-10-17T19:11:00-05:00",
+    "imagenes": [
+      "R2_pintura_pina.jpg"
+    ],
+    "caption": "BaTaKá 🍍\nTaKá. TaKá. TaKá.\nbatakataka.github.io/?o=ig\n#bataka #takataka",
+    "aprobado": true
+  },
+  {
+    "id": "R3_precios",
+    "tipo": "post",
+    "fecha": "2026-10-17T19:12:00-05:00",
+    "imagenes": [
+      "R3_precios.jpg"
+    ],
+    "caption": "TaKá $ 🏷️\n1 BaTaKá = $3\n6 BaTaKáS = $16.20\n12 BaTaKáS = $30.60\nTaKáBOOM → −20%\nbatakataka.github.io/?o=ig\n#bataka #takaboom",
+    "aprobado": true
   }
 ]
