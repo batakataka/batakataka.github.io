@@ -22,7 +22,7 @@ body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);o
 #stage .half{position:relative}
 #stage .pina{background:radial-gradient(120% 70% at 70% 45%,var(--pina) 0%,#d97800 45%,var(--pina-deep) 100%)}
 #stage .cereza{background:radial-gradient(120% 70% at 30% 45%,#ff2a45 0%,var(--cereza) 40%,var(--cereza-deep) 100%)}
-#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:manipulation;cursor:pointer}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:pointer;-webkit-touch-callout:none}
 #flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none}
 
 header.hud{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;
@@ -267,7 +267,7 @@ function refreshHUD(){
   [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
   const next=CONFIG.escalones.find(s=>n<s.latas);
   $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> ${n} BaTaKáS · −${CONFIG.pctExplosion}% $`
-    : n===0 ? "6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%"
+    : n===0 ? "TaKá! · TaKáaaaa… ⇣ BOOM · 6 BaTaKáS −10% · 12 −15% · TaKáBOOM −20%"
     : next ? `<b>${n}</b> BaTaKáS · TaKá +<b>${next.latas-n}</b> → −${next.pct}%`
     : `<b>−${discountPct()}%</b> TaKá! · TaKáBOOM → −${CONFIG.pctExplosion}%`;
 }
@@ -278,21 +278,71 @@ function bumpCart(){ const b=$("cartBtn"); b.classList.remove("bump"); void b.of
 
 /* ---------------- toques ---------------- */
 const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
+/* Toque = 1 TaKá. Mantener presionado = TaKá automático cada vez más rápido hasta el BOOM.
+   Multitouch: cada dedo mantiene su lata. Si las DOS revientan manteniendo casi a la vez → sala secreta. */
+const holds=new Map();                      // pointerId → {id,x,y,next,n,hum}
+const HOLD_DELAY=280, DUO_WINDOW=2500;      // ms antes de la ráfaga · ventana para el doble BOOM
+canvas.addEventListener("contextmenu",e=>e.preventDefault());
 canvas.addEventListener("pointerdown",e=>{
-  
   ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1); ray.setFromCamera(ptr,cam);
   const hit=ray.intersectObjects(pickables.filter(o=>cans[o.userData.flav].alive),false)[0];
   const id = hit ? hit.object.userData.flav : (e.clientX < innerWidth/2 ? "pina" : "cereza");
-  if(!cans[id]||!cans[id].alive) return;
+  if(!cans[id]||!cans[id].alive||cans[id].busy) return;
+  try{ canvas.setPointerCapture(e.pointerId); }catch(_){}
+  for(const [pid,h] of holds) if(h.id===id) stopHold(pid);   // un dedo por lata
+  stopHold(e.pointerId);
   tap(id, e.clientX, e.clientY);
+  holds.set(e.pointerId,{id, x:e.clientX, y:e.clientY, next:performance.now()+HOLD_DELAY, n:0, hum:null});
 });
-function tap(id,x,y){
+canvas.addEventListener("pointermove",e=>{ const h=holds.get(e.pointerId); if(h){ h.x=e.clientX; h.y=e.clientY; } });
+["pointerup","pointercancel","lostpointercapture"].forEach(ev=>canvas.addEventListener(ev,e=>stopHold(e.pointerId)));
+addEventListener("blur",()=>{ for(const pid of [...holds.keys()]) stopHold(pid); });
+function stopHold(pid){ const h=holds.get(pid); if(!h) return; holds.delete(pid);
+  if(h.hum){ try{ const t=AC.currentTime; h.hum.g.gain.cancelScheduledValues(t); h.hum.g.gain.setTargetAtTime(0.0001,t,0.05); h.hum.o.stop(t+0.3); }catch(_){} } }
+function humStart(id){ audio(); const o=AC.createOscillator(), f=AC.createBiquadFilter(), g=AC.createGain();
+  o.type="sawtooth"; o.frequency.value=id==="pina"?70:82; f.type="lowpass"; f.frequency.value=600; f.Q.value=6;
+  g.gain.setValueAtTime(0.0001,AC.currentTime); g.gain.exponentialRampToValueAtTime(0.14,AC.currentTime+0.15);
+  o.connect(f); f.connect(g); g.connect(master); o.start(); return {o,f,g}; }
+function holdTick(now){
+  for(const [pid,h] of [...holds]){
+    const c=cans[h.id];
+    if(!c||!c.alive||c.busy){ stopHold(pid); continue; }
+    c.wob=Math.max(c.wob,0.35+0.4*(state.taps[h.id]/CONFIG.explota));     // vibra mientras carga
+    if(now<h.next) continue;
+    if(!h.hum) h.hum=humStart(h.id);
+    h.n++;
+    const lvl=state.taps[h.id]/CONFIG.explota, base=h.id==="pina"?70:82;
+    try{ const t=AC.currentTime; h.hum.o.frequency.setTargetAtTime(base+lvl*260,t,0.05); h.hum.f.frequency.setTargetAtTime(600+lvl*3400,t,0.05); }catch(_){}
+    h.next=now+Math.max(55, 190*Math.pow(0.86,h.n));                      // cada vez más rápido
+    tap(h.id, h.x+(Math.random()-.5)*40, h.y+(Math.random()-.5)*40, h.n);
+  }
+}
+function tap(id,x,y,autoN){
   const c=cans[id]; state.taps[id]++; state.cart[id]++;
-  taka(state.taps[id]); popText(x,y,"TaKá!"); bumpCart();
+  taka(state.taps[id]); if(!autoN||autoN%2===1) popText(x,y,autoN?"TaKá":"TaKá!"); bumpCart();
   c.target=1+state.taps[id]*CONFIG.crece; c.wob=1; c.speed=Math.min(9,c.speed+0.45);
   if(navigator.vibrate) try{navigator.vibrate(12)}catch(_){}
   refreshHUD();
-  if(state.taps[id]>=CONFIG.explota) explode(id);
+  if(state.taps[id]>=CONFIG.explota){ c.byHold=!!autoN; explode(id); }
+}
+setInterval(()=>holdTick(performance.now()),20);   // independiente de los FPS
+/* doble BOOM manteniendo → sala secreta */
+let secretGo=false;
+function checkDuo(id){
+  const c=cans[id], o=cans[id==="pina"?"cereza":"pina"];
+  c.holdBoomAt = c.byHold ? performance.now() : 0;
+  if(secretGo||!c.holdBoomAt||!o||!o.holdBoomAt) return;
+  if(c.holdBoomAt-o.holdBoomAt<=DUO_WINDOW) secret();
+}
+function secret(){
+  secretGo=true; for(const pid of [...holds.keys()]) stopHold(pid);
+  try{ sessionStorage.setItem("bk_secret","1"); }catch(_){}
+  const el=document.createElement("div"); el.className="pop"; el.textContent="TaKáTaKá!!!";
+  Object.assign(el.style,{left:"50%",top:"45%",fontSize:"clamp(54px,14vw,120px)",zIndex:9});
+  document.body.appendChild(el);
+  el.animate([{transform:"translate(-50%,-50%) scale(.3) rotate(-8deg)"},{transform:"translate(-50%,-50%) scale(1.25) rotate(4deg)"},{transform:"translate(-50%,-50%) scale(1) rotate(-3deg)"}],{duration:600,easing:"cubic-bezier(.2,1.6,.4,1)",fill:"forwards"});
+  $("flash").animate([{opacity:0},{opacity:1}],{duration:900,delay:500,fill:"forwards"});
+  setTimeout(()=>{ location.href="secreto.html"+(ORIGEN!=="directo"?"?o="+ORIGEN:""); }, 1400);
 }
 
 /* ---------------- explosión ---------------- */
@@ -300,7 +350,7 @@ let bursts=[];
 function explode(id){
   const c=cans[id]; if(c.busy) return; c.busy=true;
   setTimeout(()=>{
-    state.exploded=true; state.booms++; c.alive=false; c.root.visible=false; boom(); refreshHUD();
+    state.exploded=true; state.booms++; c.alive=false; c.root.visible=false; boom(); refreshHUD(); checkDuo(id);
     $("flash").animate([{opacity:.9},{opacity:0}],{duration:450,easing:"ease-out"});
     const N=reduce?250:900, pos=new Float32Array(N*3), col=new Float32Array(N*3), vel=[];
     const base=new THREE.Color(FLAV[id].color), pal=[base, new THREE.Color(0xffffff), new THREE.Color(0x2a5cff), new THREE.Color(0x19c26a), new THREE.Color(0xff3fa4), new THREE.Color(0xfff200)];
@@ -318,7 +368,7 @@ function explode(id){
 }
 
 function respawn(id){ const c=cans[id]; state.taps[id]=0; c.scale=0.05; c.target=1; c.speed=1.1; c.wob=1;
-  c.alive=true; c.root.visible=true; c.busy=false; refreshHUD(); }
+  c.alive=true; c.root.visible=true; c.busy=false; c.byHold=false; refreshHUD(); }
 
 /* ---------------- carrito ---------------- */
 function renderCart(){
