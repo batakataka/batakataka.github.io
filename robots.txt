@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /secreto.html
+
+Sitemap: https://batakataka.github.io/sitemap.xml
