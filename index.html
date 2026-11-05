@@ -1,18 +1,21 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="description" content="BaTaKá: bebida en lata de 330 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.">
+<html lang="es"><head><meta charset="utf-8"><meta name="description" content="BaTaKá: bebida en lata de 500 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.">
 <link rel="canonical" href="https://batakataka.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://batakataka.github.io/">
 <meta property="og:title" content="BaTaKá · bebida en lata de piña y cereza">
-<meta property="og:description" content="BaTaKá: bebida en lata de 330 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.">
+<meta property="og:description" content="BaTaKá: bebida en lata de 500 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.">
 <meta property="og:image" content="https://batakataka.github.io/ig/01_hero_pina.jpg">
 <meta property="og:locale" content="es_EC">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "BaTaKá", "brand": {"@type": "Brand", "name": "BaTaKá"}, "description": "BaTaKá: bebida en lata de 330 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.", "image": "https://batakataka.github.io/ig/01_hero_pina.jpg", "offers": {"@type": "Offer", "price": "3.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "areaServed": "Quito, Ecuador"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "BaTaKá", "brand": {"@type": "Brand", "name": "BaTaKá"}, "description": "BaTaKá: bebida en lata de 500 ml, sabores piña y cereza. Arma tu pedido en la web y confírmalo por WhatsApp en Quito. Solo para mayores de 18 años.", "image": "https://batakataka.github.io/ig/01_hero_pina.jpg", "offers": {"@type": "Offer", "price": "3.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "areaServed": "Quito, Ecuador"}}</script>
 
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>[hidden]{display:none!important}</style></head><body>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BaTaKá TaKá · Toca, suma latas y pide por WhatsApp</title>
+<meta name="theme-color" content="#140d08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8D%8D%3C/text%3E%3C/svg%3E">
+<style>[hidden]{display:none!important}</style></head><body>
 <h1 style="position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">BaTaKá: bebida en lata de piña y cereza, pedidos en Quito por WhatsApp</h1>
-<title>BaTaKá TaKá</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@600;800&display=swap">
@@ -44,16 +47,20 @@ header.hud{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;j
   text-shadow:0 2px 0 #ffffff55;transform:rotate(-4deg)}
 .cartbtn{pointer-events:auto;display:flex;align-items:center;gap:8px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);
   font:800 15px/1 var(--body);padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
-.cartbtn:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.cartbtn:focus-visible,.btn:focus-visible,.snd:focus-visible,.cta:focus-visible,.x:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hud-r{display:flex;align-items:center;gap:8px}
+.snd{pointer-events:auto;width:42px;height:42px;display:grid;place-items:center;border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:50%;cursor:pointer;box-shadow:0 3px 0 var(--ink);padding:0}
+.snd svg{width:20px;height:20px}
+.snd .off{display:none}.snd[aria-pressed="true"] .on{display:none}.snd[aria-pressed="true"] .off{display:block}
 .cartbtn .carticon{flex:none;display:block}
 .cartbtn .count{font-family:var(--num);font-size:18px;min-width:1.4em;text-align:center;background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 7px}
 .cartbtn.bump{animation:bump .25s ease}
 @keyframes bump{50%{transform:scale(1.15)}}
 
-.labels{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 112px);display:grid;grid-template-columns:1fr 1fr;
-  pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.labels{position:fixed;left:0;right:0;bottom:calc(var(--lab-b,calc(env(safe-area-inset-bottom,0px) + 106px)) + 6px);display:grid;grid-template-columns:1fr 1fr;
+  transition:bottom .3s cubic-bezier(.2,.8,.3,1);pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .lab{text-align:center}
-.lab .name{font-family:var(--display);font-size:clamp(20px,4.6vw,30px);color:var(--ink)}
+.lab .name{font-family:var(--display);font-size:clamp(22px,5vw,32px);line-height:1.05;color:var(--ink)}
 .lab .taps{font:800 13px/1.2 var(--num);letter-spacing:.12em;text-transform:uppercase;color:#000000b0}
 .lab .meter{height:6px;width:min(140px,60%);margin:6px auto 0;background:#00000033;border-radius:9px;overflow:hidden}
 .lab .meter i{display:block;height:100%;width:0;background:var(--ink);border-radius:9px;transition:width .15s}
@@ -71,21 +78,64 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 .step.on{color:#fff}
 .step.boom b{font-family:var(--display);font-weight:400;font-size:13px}
 .step.last{transform:translateX(-100%);text-align:right}
+.step.on b{animation:stepOn .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stepOn{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:none}}
+
+/* botón de pedido: aparece con la primera lata */
+.cta{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;max-width:560px;box-sizing:border-box;margin:0 auto;
+  border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);
+  font:800 17px/1.1 var(--body);padding:0 18px;cursor:pointer;text-align:left;
+  max-height:0;opacity:0;overflow:hidden;border-width:0;box-shadow:none;transform:translateY(10px);pointer-events:none;
+  transition:max-height .35s cubic-bezier(.2,.8,.3,1),opacity .25s,transform .35s cubic-bezier(.2,1.4,.4,1),margin .35s,padding .35s}
+.cta.on{max-height:80px;opacity:1;transform:none;pointer-events:auto;margin-top:12px;padding:14px 18px;border-width:2px;box-shadow:0 4px 0 var(--ink)}
+.cta .l{display:flex;align-items:center;gap:10px}
+.cta .l svg{flex:none;width:22px;height:22px}
+.cta .r{font:800 20px/1 var(--num);white-space:nowrap;font-variant-numeric:tabular-nums}
+.cta .r s{font-weight:600;font-size:15px;opacity:.55;margin-right:4px}
+.cta.boom{background:var(--ink);color:var(--paper);border-color:var(--paper);box-shadow:0 4px 0 #000}
+.cta.pulse{animation:ctaPulse .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes ctaPulse{40%{transform:scale(1.05) rotate(-1deg)}}
+
+/* guía del primer toque */
+.coach{position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:3;opacity:0;transition:opacity .35s}
+.coach.on{opacity:1}
+.coach .ring{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;border:3px solid #fff;box-sizing:border-box;opacity:0;animation:coachRing 1.6s infinite}
+.coach .mano{position:absolute;left:-23px;top:-3px;width:50px;height:50px;transform-origin:23px 3px;animation:coachTap 1.6s infinite;filter:drop-shadow(0 3px 0 #0007)}
+.coach .globo{position:absolute;left:0;top:-58px;transform:translateX(-50%);background:var(--paper);color:var(--ink);border:2px solid var(--ink);box-shadow:0 3px 0 var(--ink);
+  font:800 15px/1.2 var(--body);padding:8px 12px;border-radius:14px;white-space:nowrap}
+.coach .globo b{font-family:var(--display);font-weight:400;font-size:17px}
+.coach.hold .mano{animation:coachHold 2.4s infinite}
+.coach.hold .ring{animation:coachRingHold 2.4s infinite}
+@keyframes coachTap{0%,100%{transform:translate(6px,18px)}22%{transform:none}30%{transform:scale(.88)}40%{transform:none}52%{transform:scale(.88)}62%{transform:none}80%{transform:translate(6px,18px)}}
+@keyframes coachRing{0%,25%{opacity:0;transform:scale(.3)}30%{opacity:.95;transform:scale(.45)}50%{opacity:0;transform:scale(1.4)}52%{opacity:.95;transform:scale(.45)}75%,100%{opacity:0;transform:scale(1.4)}}
+@keyframes coachHold{0%,100%{transform:translate(6px,18px)}15%{transform:none}22%,78%{transform:scale(.86)}88%{transform:none}}
+@keyframes coachRingHold{0%,20%{opacity:0;transform:scale(.3)}25%{opacity:.95;transform:scale(.4)}40%{opacity:0;transform:scale(1.2)}41%{opacity:.95;transform:scale(.4)}56%{opacity:0;transform:scale(1.3)}57%{opacity:.95;transform:scale(.4)}72%{opacity:0;transform:scale(1.5)}100%{opacity:0}}
+.big{position:fixed;left:50%;top:40%;z-index:4;pointer-events:none;text-align:center;font-family:var(--display);color:#fff;line-height:.95;
+  text-shadow:0 4px 0 var(--ink),0 0 24px #0009;transform:translate(-50%,-50%)}
+.big b{display:block;font-weight:400;font-size:clamp(64px,17vw,150px)}
+.big small{display:block;font-size:clamp(20px,4.6vw,30px)}
 
 .pop{position:fixed;font-family:var(--display);font-size:clamp(26px,6vw,40px);color:#fff;pointer-events:none;
   text-shadow:0 3px 0 var(--ink),0 0 18px #0008;transform:translate(-50%,-50%);will-change:transform,opacity}
 
 #loading{position:fixed;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:28px;color:var(--ink);pointer-events:none}
+#loading .ld{display:grid;justify-items:center;gap:12px}
+#loading .bar{width:170px;height:6px;background:#00000033;border-radius:9px;overflow:hidden}
+#loading .bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:9px;transition:width .2s}
+#loading small{font:800 14px/1 var(--num);letter-spacing:.14em}
 
 /* carrito */
 #sheet{position:fixed;inset:0;display:grid;align-items:end;background:#000000a0;opacity:0;pointer-events:none;transition:opacity .25s}
 #sheet.open{opacity:1;pointer-events:auto}
-.card{background:var(--paper);color:var(--ink);border-radius:22px 22px 0 0;max-width:560px;width:100%;margin:0 auto;
+.card{position:relative;background:var(--paper);color:var(--ink);border-radius:22px 22px 0 0;max-width:560px;width:100%;margin:0 auto;
   padding-top:22px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));
   transform:translateY(40px);transition:transform .35s cubic-bezier(.2,1.4,.4,1);box-sizing:border-box}
 #sheet.open .card{transform:none}
 .card h2{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 2px;text-wrap:balance}
 .card .sub{margin:0 0 16px;color:#5a4a3a;font-size:14px}
+.x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:transparent;color:var(--ink);font:800 20px/1 var(--body);cursor:pointer;display:grid;place-items:center;padding:0}
+.up{margin:10px 0 0;font:600 14px/1.35 var(--body);color:#5a4a3a}
+.up b{color:var(--ink)}
 .badge{display:inline-block;font:800 13px/1 var(--num);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:7px 10px;border-radius:999px;margin-bottom:12px}
 .rows{display:grid;gap:10px;margin-bottom:14px}
 .row{display:grid;grid-template-columns:18px 1fr auto auto;gap:10px;align-items:center;font-size:16px}
@@ -99,48 +149,56 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 .tot .disc{color:#b0101f}
 .tot .grand{font-size:24px;font-weight:800}
 .actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-.btn{flex:1 1 160px;text-align:center;text-decoration:none;box-sizing:border-box;border:2px solid var(--ink);border-radius:14px;padding:14px;font:800 16px var(--body);cursor:pointer;background:transparent;color:var(--ink)}
-.btn.main{background:var(--ink);color:var(--paper);box-shadow:0 3px 0 #000}
+.btn{flex:1 1 140px;text-align:center;text-decoration:none;box-sizing:border-box;border:2px solid var(--ink);border-radius:14px;padding:14px;font:800 16px var(--body);cursor:pointer;background:transparent;color:var(--ink)}
+.btn.main{flex:2 1 200px;background:var(--ink);color:var(--paper);box-shadow:0 3px 0 #000;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn.main svg{width:20px;height:20px;flex:none}
 .note{font-size:12.5px;color:#6b5a48;margin:12px 0 0;min-height:1em}
-@media (prefers-reduced-motion:reduce){.card{transition:none}.cartbtn.bump{animation:none}}
+@media (prefers-reduced-motion:reduce){.card,.cta,.labels{transition:none}.cartbtn.bump,.cta.pulse,.step.on b,.coach .mano,.coach .ring{animation:none}}
 </style>
 
 <div id="stage"><div class="half pina"></div><div class="half cereza"></div></div>
 <canvas id="gl" aria-label="Latas de Bataká girando. Toca una para sumarla al carrito."></canvas>
 <div id="flash"></div>
-<div id="loading">TaKá… TaKá…</div>
+<div id="loading"><div class="ld"><span>TaKá… TaKá…</span><span class="bar"><i id="loadBar"></i></span><small id="loadPct">0%</small></div></div>
+<div class="coach" id="coach" aria-hidden="true"><span class="ring"></span><svg class="mano" viewBox="0 0 48 48"><path d="M19 5.5a3.9 3.9 0 0 1 7.8 0v15.2l1.6-.3a3.9 3.9 0 0 1 4.5 2.6 3.9 3.9 0 0 1 5.3 2.7 3.9 3.9 0 0 1 4.6 3.8V36a10.5 10.5 0 0 1-10.5 10.5h-6.2a10.5 10.5 0 0 1-8.6-4.5L9.6 33a3.7 3.7 0 0 1 5.6-4.8l3.8 3.3Z" fill="#fff8ec" stroke="#140d08" stroke-width="2.6" stroke-linejoin="round"/></svg><span class="globo" id="coachTxt"><b>Toca</b> = +1 lata</span></div>
 
 <header class="hud">
   <div class="brand">BaTaKá</div>
+  <div class="hud-r">
+  <button class="snd" id="sndBtn" type="button" aria-label="Silenciar el sonido" aria-pressed="false"><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   <button class="cartbtn" id="cartBtn" type="button" aria-label="Ver carrito">BaTaKáS <svg class="carticon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 3.5h2.6l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.3a1.6 1.6 0 0 0 1.6-1.2l1.7-7.3H6.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.6" cy="20" r="1.7" fill="currentColor"/><circle cx="17.4" cy="20" r="1.7" fill="currentColor"/></svg><span class="count" id="cartCount">0</span></button>
+  </div>
 </header>
 
 
 <div class="labels" aria-live="polite">
-  <div class="lab"><div class="name">BaTaKá</div><div class="taps" id="tapsPina">0 TaKáS</div><div class="meter"><i id="mPina"></i></div></div>
-  <div class="lab"><div class="name">BaTaKá</div><div class="taps" id="tapsCereza">0 TaKáS</div><div class="meter"><i id="mCereza"></i></div></div>
+  <div class="lab"><div class="name">Piña</div><div class="taps" id="tapsPina">$3 · 0 TaKáS</div><div class="meter"><i id="mPina"></i></div></div>
+  <div class="lab"><div class="name">Cereza</div><div class="taps" id="tapsCereza">$3 · 0 TaKáS</div><div class="meter"><i id="mCereza"></i></div></div>
 </div>
 
 <footer class="ladder">
   <div class="hint" id="hint">6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%</div>
   <div class="track"><div class="fill" id="fill"></div></div>
   <div class="steps" id="steps"></div>
+  <button class="cta" id="cta" type="button" aria-label="Ver tu pedido"><span class="l"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg><span id="ctaTxt">TaKá! Pedir</span></span><span class="r" id="ctaPrice"></span></button>
 </footer>
 
 <div id="sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
   <div class="card">
-    <h2 id="cartTitle">BaTaKáS</h2>
+    <button class="x" id="closeCart" type="button" aria-label="Cerrar">✕</button>
+    <h2 id="cartTitle">TaKá! Tu pedido</h2>
     <p class="sub" id="cartSub">TaKá!</p>
     <div id="badgeWrap"></div>
     <div class="rows" id="rows"></div>
     <div class="tot">
-      <div><span>BaTaKáS $</span><span id="subtotal">$0.00</span></div>
-      <div class="disc"><span id="discLabel">TaKá −%</span><span id="disc">−$0.00</span></div>
-      <div class="grand"><span>TaKá $</span><span id="total">$0.00</span></div>
+      <div><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="disc" id="discRow"><span id="discLabel">Descuento</span><span id="disc">−$0.00</span></div>
+      <div class="grand"><span>Total</span><span id="total">$0.00</span></div>
     </div>
+    <p class="up" id="upsell"></p>
     <div class="actions">
-      <button class="btn" id="again" type="button">TaKá TaKá ↺</button>
-      <a class="btn main" id="pay" href="https://api.whatsapp.com/send/?phone=593969577774" target="_blank" rel="noopener">TaKá! $ →</a>
+      <button class="btn" id="again" type="button">↺ Seguir tocando</button>
+      <a class="btn main" id="pay" href="https://api.whatsapp.com/send/?phone=593969577774" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
     </div>
     <p class="note" id="note"></p>
   </div>
@@ -181,15 +239,16 @@ function logEvento(ev){
 }
 logEvento({tipo:"visita"});
 const FLAV = {
-  pina:   {name:"BaTaKá",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json", tex:"tex_pina.jpg", x:-1, tilt: 0.26},
-  cereza: {name:"BaTaKá", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
+  pina:   {name:"BaTaKá", sabor:"Piña",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json",   peso:3386048, tex:"tex_pina.jpg",   x:-1, tilt: 0.26},
+  cereza: {name:"BaTaKá", sabor:"Cereza", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", peso:3330074, tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
 };
 const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, booms:0 };
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------- audio: "ta-ka" sintetizado ---------------- */
-let AC=null, master=null;
-function audio(){ if(!AC){ AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.gain.value=0.9;
+let AC=null, master=null, muted=false;
+try{ muted=localStorage.getItem("bk_mute")==="1"; }catch(_){}
+function audio(){ if(!AC){ AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.gain.value=muted?0:0.9;
   const comp=AC.createDynamicsCompressor(); master.connect(comp); comp.connect(AC.destination);} if(AC.state==="suspended") AC.resume(); return AC; }
 function noiseBuf(sec){ const b=AC.createBuffer(1,AC.sampleRate*sec,AC.sampleRate), d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; return b; }
 function hit(t, f, dur, bright, gain){
@@ -202,6 +261,10 @@ function taka(level){ audio(); const t=AC.currentTime, up=1+level*0.025;
   hit(t, 820*up, 0.09, 3800*up, 0.55);          // "ta"
   hit(t+0.085, 520*up, 0.13, 2200*up, 0.7);     // "ka"
 }
+function ding(n){ audio(); const t=AC.currentTime;              // escalón de descuento desbloqueado
+  [0,0.09,0.18].slice(0,n+1).forEach((d,i)=>{ const o=AC.createOscillator(), g=AC.createGain(); o.type="square"; o.frequency.value=[660,880,1320][i];
+    g.gain.setValueAtTime(0.0001,t+d); g.gain.exponentialRampToValueAtTime(0.22,t+d+0.01); g.gain.exponentialRampToValueAtTime(0.0001,t+d+0.16);
+    o.connect(g); g.connect(master); o.start(t+d); o.stop(t+d+0.2); }); }
 function boom(){ audio(); const t=AC.currentTime;
   const o=AC.createOscillator(), g=AC.createGain(); o.type="sine"; o.frequency.setValueAtTime(120,t); o.frequency.exponentialRampToValueAtTime(32,t+0.9);
   g.gain.setValueAtTime(1.0,t); g.gain.exponentialRampToValueAtTime(0.0001,t+1.2); o.connect(g); g.connect(master); o.start(t); o.stop(t+1.3);
@@ -238,8 +301,20 @@ function toGLB(gltf, bin){
 }
 function loadTex(url){ return new Promise((res,rej)=>new THREE.TextureLoader().load(url,t=>{ t.flipY=false; t.encoding=THREE.sRGBEncoding;
   t.wrapS=t.wrapT=THREE.RepeatWrapping; t.anisotropy=renderer.capabilities.getMaxAnisotropy(); res(t); },undefined,rej)); }
+const bajado={};
+function showLoad(){ let got=0, tot=0; for(const k in FLAV){ tot+=FLAV[k].peso; got+=Math.min(bajado[k]||0,FLAV[k].peso); }
+  const p=Math.min(99,Math.round(got/tot*100)); const b=document.getElementById("loadBar"), t=document.getElementById("loadPct");
+  if(b) b.style.width=p+"%"; if(t) t.textContent=p+"%"; }
+async function getModel(id){                 // lee el modelo por partes para mostrar el avance
+  const r=await fetch(FLAV[id].glb); if(!r.ok) throw new Error(r.status);
+  if(!r.body||!r.body.getReader||!window.TextDecoder) return r.json();
+  const rd=r.body.getReader(), parts=[]; let n=0;
+  for(;;){ const {done,value}=await rd.read(); if(done) break; parts.push(value); n+=value.length; bajado[id]=n; showLoad(); }
+  const all=new Uint8Array(n); let o=0; for(const q of parts){ all.set(q,o); o+=q.length; }
+  return JSON.parse(new TextDecoder().decode(all));
+}
 async function loadCan(id){
-  const [data, tex] = await Promise.all([fetch(FLAV[id].glb).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }), loadTex(FLAV[id].tex)]);
+  const [data, tex] = await Promise.all([getModel(id), loadTex(FLAV[id].tex)]);
   const raw=atob(data.bin), bin=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) bin[i]=raw.charCodeAt(i);
   const g=await new Promise((res,rej)=>loader.parse(toGLB(data.gltf,bin),"",res,rej));
   const root=new THREE.Group(), tiltG=new THREE.Group(), spin=new THREE.Group();
@@ -254,34 +329,66 @@ async function loadCan(id){
 
 function layout(){
   const w=innerWidth, h=innerHeight; renderer.setSize(w,h,false); cam.aspect=w/h;
-  // encajar dos latas (ancho ~0.30 m) y alto ~0.30 m
-  const needW=0.37, needH=0.36, vfov=THREE.MathUtils.degToRad(cam.fov);
+  // encajar dos latas (ancho ~0.30 m) y alto ~0.30 m; en vertical sobra alto, así que van un poco más grandes
+  const port=cam.aspect<0.8;
+  const needW=port?0.34:0.37, needH=0.36, vfov=THREE.MathUtils.degToRad(cam.fov);
   const dH=(needH/2)/Math.tan(vfov/2), dW=(needW/2)/(Math.tan(vfov/2)*cam.aspect);
-  cam.position.set(0,0.012,Math.max(dH,dW)); cam.lookAt(0,0.0,0); cam.updateProjectionMatrix();
+  cam.position.set(0,0.012,Math.max(dH,dW)); cam.lookAt(0,0.0,0);
+  // subir las latas al centro del espacio libre entre la barra de arriba y los controles de abajo
+  const top=document.querySelector("header.hud").offsetHeight, foot=document.querySelector("footer.ladder"), labs=document.querySelector(".labels");
+  const cta=document.getElementById("cta"), ctaH=cta.classList.contains("on")?0:64;
+  const bot=foot.offsetHeight+labs.offsetHeight+ctaH;
+  const dy=Math.max(0,(bot-top)/2)*(port?1:0.45);
+  cam.setViewOffset(w,h,0,Math.round(dy),w,h);
+  cam.updateProjectionMatrix();
 }
 addEventListener("resize",layout);
 
 /* ---------------- UI ---------------- */
 const $=id=>document.getElementById(id);
-const steps=[...CONFIG.escalones.map(s=>({at:s.latas,txt:"−"+s.pct+"%",lab:s.latas+" BaTaKáS"})),{at:CONFIG.explota,txt:"TaKáBOOM",lab:"−"+CONFIG.pctExplosion+"%",boom:true}];
+const steps=[...CONFIG.escalones.map(s=>({at:s.latas,txt:"−"+s.pct+"%",lab:s.latas+" latas"})),{at:CONFIG.explota,txt:"TaKáBOOM",lab:"−"+CONFIG.pctExplosion+"%",boom:true}];
 const maxSteps=CONFIG.explota;
 $("steps").innerHTML=steps.map(s=>`<div class="step${s.boom?' boom last':''}" style="left:${(s.at/maxSteps*100).toFixed(1)}%"><b>${s.txt}</b>${s.lab}</div>`).join("");
 function totalCans(){ return state.cart.pina+state.cart.cereza; }
 function discountPct(){ if(state.exploded) return CONFIG.pctExplosion; let p=0; for(const s of CONFIG.escalones) if(totalCans()>=s.latas) p=s.pct; return p; }
 function money(v){ return "$"+v.toFixed(2); }
+const precioCorto="$"+(CONFIG.precio%1?CONFIG.precio.toFixed(2):CONFIG.precio.toFixed(0));
+const latas=n=>n+(n===1?" lata":" latas");
+let celebrado=0;
 function refreshHUD(){
   const n=totalCans(); $("cartCount").textContent=n;
   for(const id of ["pina","cereza"]){ const t=state.taps[id];
-    $(id==="pina"?"tapsPina":"tapsCereza").textContent=t+(t===1?" TaKá":" TaKáS");
+    $(id==="pina"?"tapsPina":"tapsCereza").textContent=precioCorto+" · "+t+(t===1?" TaKá":" TaKáS");
     $(id==="pina"?"mPina":"mCereza").style.width=Math.min(100,t/CONFIG.explota*100)+"%"; }
   const best=Math.max(state.taps.pina,state.taps.cereza);
   $("fill").style.width=Math.min(100,Math.max(n,best)/maxSteps*100)+"%";
   [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
   const next=CONFIG.escalones.find(s=>n<s.latas);
-  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> ${n} BaTaKáS · −${CONFIG.pctExplosion}% $`
-    : n===0 ? "TaKá! · TaKáaaaa… ⇣ BOOM · 6 BaTaKáS −10% · 12 −15% · TaKáBOOM −20%"
-    : next ? `<b>${n}</b> BaTaKáS · TaKá +<b>${next.latas-n}</b> → −${next.pct}%`
-    : `<b>−${discountPct()}%</b> TaKá! · TaKáBOOM → −${CONFIG.pctExplosion}%`;
+  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> −${CONFIG.pctExplosion}% en todo tu pedido`
+    : n===0 ? `Cada toque suma <b>1 lata</b> · Mantén presionado y hazla explotar: <b>−${CONFIG.pctExplosion}%</b>`
+    : next ? `<b>${latas(n)}</b> · ${next.latas-n===1?"falta":"faltan"} <b>${next.latas-n}</b> para <b>−${next.pct}%</b>`
+    : `<b>−${discountPct()}%</b> listo · haz explotar una lata: <b>−${CONFIG.pctExplosion}%</b>`;
+  // botón de pedido
+  const pct=discountPct(), sub=n*CONFIG.precio, cta=$("cta");
+  if(n>0 && !cta.classList.contains("on")){ cta.classList.add("on"); }
+  else if(n===0) cta.classList.remove("on");
+  cta.classList.toggle("boom", state.exploded);
+  $("ctaTxt").innerHTML=`TaKá! Pedir <b>${latas(n)}</b>`;
+  $("ctaPrice").innerHTML=(pct?`<s>${money(sub)}</s>`:"")+money(sub*(1-pct/100))+" →";
+  if(pct>celebrado){ celebrado=pct; celebrate(pct); }
+}
+/* escalón desbloqueado: número grande, campanita y el botón de pedido salta */
+function celebrate(pct){
+  const esBoom=state.exploded && pct===CONFIG.pctExplosion;
+  setTimeout(()=>{
+    if(!esBoom) ding(CONFIG.escalones.findIndex(s=>s.pct===pct)+1);
+    document.querySelectorAll(".big").forEach(e=>e.remove());          // si llegan dos escalones seguidos, queda el último
+    const el=document.createElement("div"); el.className="big"; el.innerHTML=`<b>−${pct}%</b><small>${esBoom?"TaKáBOOM! en todo tu pedido":"TaKá! desbloqueado"}</small>`;
+    document.body.appendChild(el);
+    el.animate(reduce?[{opacity:1},{opacity:0}]:[{transform:"translate(-50%,-50%) scale(.3) rotate(-10deg)",opacity:0},{transform:"translate(-50%,-50%) scale(1.12) rotate(3deg)",opacity:1,offset:.25},{transform:"translate(-50%,-50%) scale(1) rotate(-2deg)",opacity:1,offset:.7},{transform:"translate(-50%,-62%) scale(.9) rotate(-2deg)",opacity:0}],
+      {duration:reduce?900:1500,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=()=>el.remove();
+    const c=$("cta"); c.classList.remove("pulse"); void c.offsetWidth; c.classList.add("pulse");
+  }, esBoom?450:0);
 }
 function popText(x,y,txt){ const el=document.createElement("div"); el.className="pop"; el.textContent=txt; el.style.left=x+"px"; el.style.top=y+"px"; document.body.appendChild(el);
   const dx=(Math.random()-.5)*80, rot=(Math.random()-.5)*30;
@@ -296,6 +403,7 @@ const holds=new Map();                      // pointerId → {id,x,y,next,n,hum}
 const HOLD_DELAY=280, DUO_WINDOW=2500;      // ms antes de la ráfaga · ventana para el doble BOOM
 canvas.addEventListener("contextmenu",e=>e.preventDefault());
 canvas.addEventListener("pointerdown",e=>{
+  hideCoach();
   ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1); ray.setFromCamera(ptr,cam);
   const hit=ray.intersectObjects(pickables.filter(o=>cans[o.userData.flav].alive),false)[0];
   const id = hit ? hit.object.userData.flav : (e.clientX < innerWidth/2 ? "pina" : "cereza");
@@ -385,27 +493,54 @@ function respawn(id){ const c=cans[id]; state.taps[id]=0; c.scale=0.05; c.target
 /* ---------------- carrito ---------------- */
 function renderCart(){
   const rows=["pina","cereza"].filter(id=>state.cart[id]>0);
-  $("rows").innerHTML = rows.length ? rows.map(id=>`<div class="row"><span class="dot" style="background:${FLAV[id].css}"></span><span>${FLAV[id].name}</span>
+  $("rows").innerHTML = rows.length ? rows.map(id=>`<div class="row"><span class="dot" style="background:${FLAV[id].css}"></span><span>${FLAV[id].name} ${FLAV[id].sabor}</span>
     <span class="qty"><button type="button" data-id="${id}" data-d="-1" aria-label="Quitar una">−</button><span class="q">${state.cart[id]}</span><button type="button" data-id="${id}" data-d="1" aria-label="Agregar una">+</button></span>
     <span class="p">${money(state.cart[id]*CONFIG.precio)}</span></div>`).join("")
-    : `<p style="margin:0;color:#6b5a48">0 BaTaKáS · TaKá? ↑</p>`;
+    : `<p style="margin:0;color:#6b5a48">Todavía no hay latas. Toca una para sumarla ↑</p>`;
   const sub=totalCans()*CONFIG.precio, pct=discountPct(), d=sub*pct/100;
   const sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
   const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(sub-d)} · ${ORIGEN}`;
   $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
-  $("subtotal").textContent=money(sub); $("discLabel").textContent=`TaKá −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
+  $("subtotal").textContent=money(sub); $("discLabel").textContent=state.exploded?`TaKáBOOM −${pct}%`:`Descuento −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
+  $("discRow").hidden=!pct;
   $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! −${CONFIG.pctExplosion}%</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
-  $("cartSub").textContent = `${totalCans()} BaTaKáS · ${state.taps.pina+state.taps.cereza} TaKáS · ${money(CONFIG.precio)} × BaTaKá`;
+  $("cartSub").textContent = `${latas(totalCans())} de 500 ml · ${money(CONFIG.precio)} c/u`;
+  const n=totalCans(), next=CONFIG.escalones.find(s=>n<s.latas);
+  $("upsell").innerHTML = state.exploded || !n ? "" : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: <b>−${CONFIG.pctExplosion}%</b>.`
+    : `Haz explotar una lata y el descuento sube a <b>−${CONFIG.pctExplosion}%</b>.`;
 }
+const NOTA="Te confirmamos disponibilidad, pago y entrega por WhatsApp. Pedidos en Quito. Solo para mayores de 18 años.";
 $("rows").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id; state.cart[id]=Math.max(0,state.cart[id]+(+b.dataset.d)); renderCart(); refreshHUD(); });
-function openCart(){ renderCart(); $("note").textContent=""; $("sheet").classList.add("open"); }
+let antesDelCarrito=null;
+function openCart(){ renderCart(); $("note").textContent=NOTA; antesDelCarrito=document.activeElement; $("sheet").classList.add("open"); setTimeout(()=>$("pay").focus({preventScroll:true}),60); }
 $("cartBtn").addEventListener("click",()=>{ audio(); openCart(); });
+$("cta").addEventListener("click",()=>{ audio(); openCart(); });
 $("sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeCart(); });
-function closeCart(){ $("sheet").classList.remove("open"); }
+$("closeCart").addEventListener("click",closeCart);
+addEventListener("keydown",e=>{ if(e.key==="Escape" && $("sheet").classList.contains("open")) closeCart(); });
+function closeCart(){ $("sheet").classList.remove("open"); if(antesDelCarrito&&antesDelCarrito.focus) try{ antesDelCarrito.focus({preventScroll:true}); }catch(_){} }
 $("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
-$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="TaKá? +1 BaTaKá ↑"; } else { $("note").textContent="TaKá! → WhatsApp +593 96 957 7774";
+$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="Toca una lata para sumarla a tu pedido ↑"; } else { $("note").textContent="TaKá! Abriendo WhatsApp… (+593 96 957 7774)";
     const sub=totalCans()*CONFIG.precio, pct=discountPct();
     logEvento({tipo:"pedido", pina:state.cart.pina, cereza:state.cart.cereza, latas:totalCans(), total:+(sub*(1-pct/100)).toFixed(2), descuento_pct:pct, booms:state.booms||0}); } });
+/* sonido on/off */
+function pintaSonido(){ const b=$("sndBtn"); b.setAttribute("aria-pressed",muted?"true":"false"); b.setAttribute("aria-label",muted?"Activar el sonido":"Silenciar el sonido"); }
+pintaSonido();
+$("sndBtn").addEventListener("click",()=>{ muted=!muted; try{ localStorage.setItem("bk_mute",muted?"1":"0"); }catch(_){}
+  if(master) master.gain.setTargetAtTime(muted?0:0.9,AC.currentTime,0.02); pintaSonido(); if(!muted) taka(0); });
+
+/* guía del primer toque: una mano sobre la lata de piña */
+const coach=$("coach"); let coachOn=false, coachT=null;
+function showCoach(){ if(state.taps.pina+state.taps.cereza>0||totalCans()>0) return; coachOn=true; coach.classList.add("on");
+  let hold=false;
+  const paso=()=>{ if(!coachOn) return; coachT=setTimeout(()=>{ hold=!hold; coach.classList.toggle("hold",hold);
+    $("coachTxt").innerHTML = hold ? `<b>Mantén</b> = TaKáBOOM −${CONFIG.pctExplosion}%` : `<b>Toca</b> = +1 lata`; paso(); }, hold?2400:3200); };
+  paso(); }
+function hideCoach(){ if(!coachOn) return; coachOn=false; clearTimeout(coachT); coach.classList.remove("on"); }
+const vCoach=new THREE.Vector3();
+function placeCoach(){ const c=cans.pina; if(!c) return; c.root.getWorldPosition(vCoach); vCoach.project(cam);
+  coach.style.transform=`translate(${(vCoach.x+1)/2*innerWidth}px,${(1-vCoach.y)/2*innerHeight}px)`; }
+
 function resetCans(){ for(const id in cans){ const c=cans[id]; if(!c.alive){ c.alive=true; c.root.visible=true; state.taps[id]=0; c.scale=0.2; c.target=1; c.speed=1.1; } }
   refreshHUD(); }
 
@@ -430,10 +565,16 @@ function frame(){
     p.needsUpdate=true; burst.pts.material.opacity=Math.max(0,1-burst.t/2.2);
     const s=1+burst.t*30; burst.ring.scale.set(s,s,s); burst.ring.material.opacity=Math.max(0,.7-burst.t*1.8); burst.ring.lookAt(cam.position);
     if(burst.t>2.4){ scene.remove(burst.pts); scene.remove(burst.ring); burst.pts.geometry.dispose(); burst.ring.geometry.dispose(); bursts.splice(bi,1); } }
+  if(coachOn) placeCoach();
   renderer.render(scene,cam); requestAnimationFrame(frame);
 }
+/* las etiquetas de sabor siempre justo encima de los controles de abajo */
+const pie=document.querySelector("footer.ladder");
+function subeEtiquetas(){ document.documentElement.style.setProperty("--lab-b", pie.offsetHeight+"px"); }
+subeEtiquetas(); if(window.ResizeObserver) new ResizeObserver(subeEtiquetas).observe(pie);
 layout(); refreshHUD();
-Promise.all([loadCan("pina"),loadCan("cereza")]).then(()=>{ $("loading").hidden=true; frame(); })
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(layout);
+Promise.all([loadCan("pina"),loadCan("cereza")]).then(()=>{ $("loading").hidden=true; frame(); setTimeout(showCoach, 700); })
   .catch(err=>{ $("loading").textContent="TaKá…? ↻ (recarga la página)"; console.error(err); });
 </script>
 </body></html>
