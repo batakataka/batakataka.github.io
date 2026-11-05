@@ -577,4 +577,22 @@ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(layout);
 Promise.all([loadCan("pina"),loadCan("cereza")]).then(()=>{ $("loading").hidden=true; frame(); setTimeout(showCoach, 700); })
   .catch(err=>{ $("loading").textContent="TaKá…? ↻ (recarga la página)"; console.error(err); });
 </script>
+<!-- Asistente de chat y voz (el mismo de Creative Whisper). La información sale de la base de BaTaKá. -->
+<script>
+window.CW_ASISTENTE = {
+  sitio: "bataka",
+  tema: { fondo: "#140d08", panel: "#1d140d", panel2: "#2a1d12", texto: "#fff8ec", suave: "#cbb9a2",
+          acento: "#f5a300", acentoTexto: "#ffbe3d", sobreAcento: "#140d08", linea: "rgba(255,248,236,.16)",
+          fuente: '"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif', titulo: '"Permanent Marker","Marker Felt",cursive' },
+  textos: {
+    titulo: "Asistente BaTaKá",
+    saludo: "¡TaKá! Soy el asistente de BaTaKá: te cuento de los sabores, los precios y cómo pedir.",
+    sugerencias: ["¿Qué sabores hay?", "¿Cuánto cuesta?", "¿Cómo hago mi pedido?", "¿Qué tiene BaTaKá?"],
+    nota: "Asistente automático de BaTaKá. Solo para mayores de 18. El pedido se envía por WhatsApp."
+  },
+  posicion: "arriba",
+  cabecera: "header.hud"
+};
+</script>
+<script src="https://creativewhisper.github.io/asistente/asistente.js" defer></script>
 </body></html>
