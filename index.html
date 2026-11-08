@@ -424,7 +424,7 @@ function refreshHUD(){
   [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
   const next=CONFIG.escalones.find(s=>n<s.latas);
   const BOOMTXT = PROMO ? PROMO_TXT : "−"+CONFIG.pctExplosion+"%";
-  $("hint").innerHTML = state.exploded ? (PROMO ? (n>=PROMO.lleva ? `<b>TaKáBOOM!!! ${PROMO_TXT}</b> · ${latas(n)} por <b>${money(pricing().total)}</b>`
+  $("hint").innerHTML = state.exploded ? (PROMO ? (n>=PROMO.lleva ? (pricing().tag===PROMO_TXT ? `<b>TaKáBOOM!!! ${PROMO_TXT}</b> · ${latas(n)} por <b>${money(pricing().total)}</b>` : `<b>TaKáBOOM!!!</b> ${latas(n)} por <b>${money(pricing().total)}</b> · o ${PROMO.lleva} por <b>$${PROMO.paga*CONFIG.precio}</b>`)
         : `<b>TaKáBOOM!!!</b> −${CONFIG.pctExplosion}% · con <b>${PROMO.lleva} BaTaKáS</b> es <b>${PROMO_TXT}</b>`)
       : `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> −${CONFIG.pctExplosion}% en todo tu pedido`)
     : n===0 ? `Cada toque suma <b>1 lata</b> · Mantén presionado y hazla explotar: <b>${BOOMTXT}</b>`
