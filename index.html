@@ -154,6 +154,24 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 .btn.main{flex:2 1 200px;background:var(--ink);color:var(--paper);box-shadow:0 3px 0 #000;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn.main svg{width:20px;height:20px;flex:none}
 .note{font-size:12.5px;color:#6b5a48;margin:12px 0 0;min-height:1em}
+.card{max-height:calc(100dvh - 12px);overflow-y:auto;overscroll-behavior:contain}
+.row.regalo small{display:block;font-size:12px;color:#6b5a48}
+.promos{margin-top:12px}
+.promos .plab{font:800 11px/1 var(--num);letter-spacing:.12em;text-transform:uppercase;color:#6b5a48;margin-bottom:8px}
+.pscroll{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.pchip{flex:0 0 auto;scroll-snap-align:start;text-align:left;border:2px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink);padding:9px 12px;cursor:pointer;box-shadow:0 3px 0 var(--ink);font:inherit;max-width:210px}
+.pchip b{display:block;font:800 14px/1.15 var(--body)}
+.pchip span{display:block;font:600 11.5px/1.25 var(--body);color:#5a4a3a;margin-top:3px}
+.pchip.on{background:var(--pina)}
+.pchip.on span{color:var(--ink)}
+.pchip.caja.on{background:var(--cereza);color:#fff}.pchip.caja.on span{color:#ffe9e9}
+.pchip.inv{background:var(--ink);color:var(--paper)}.pchip.inv span{color:#e8dccb}
+input.pana{width:100%;box-sizing:border-box;margin-top:4px;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;font:600 15px var(--body);background:#fff;color:var(--ink)}
+.ticker{display:block;width:100%;max-width:560px;margin:0 auto 10px;overflow:hidden;white-space:nowrap;border:2px solid var(--paper);border-radius:999px;background:var(--ink);color:var(--paper);padding:6px 0;cursor:pointer;font:800 12.5px/1 var(--body);letter-spacing:.02em;pointer-events:auto}
+.ticker .tk{display:inline-block;padding-left:100%;animation:tk 26s linear infinite}
+.ticker i{font-style:normal}.ticker i.y{color:var(--pina)}.ticker i.r{color:#ff6b7a}
+@keyframes tk{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.ticker .tk{animation:none;padding-left:12px}}
 @media (prefers-reduced-motion:reduce){.card,.cta,.labels{transition:none}.cartbtn.bump,.cta.pulse,.step.on b,.coach .mano,.coach .ring{animation:none}}
 </style>
 
@@ -178,6 +196,7 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
 </div>
 
 <footer class="ladder">
+  <button type="button" class="ticker" id="ticker" aria-label="Ver las promos"><span class="tk"><i class="y">5x3 con TaKáBOOM</i> · <i>5 vacías = 1 llena</i> · <i class="r">Caja Grupo 24 = $58 con envío</i> · <i>Trae a tu pana: +1 para cada uno</i> · <i class="y">5x3 con TaKáBOOM</i> · <i>5 vacías = 1 llena</i> · <i class="r">Caja Grupo 24 = $58 con envío</i> · <i>Trae a tu pana: +1 para cada uno</i> · <i class="y">5x3 con TaKáBOOM</i> · <i>5 vacías = 1 llena</i> · <i class="r">Caja Grupo 24 = $58 con envío</i> · <i>Trae a tu pana: +1 para cada uno</i> · </span></button>
   <div class="hint" id="hint">6 BaTaKáS −10% · 12 BaTaKáS −15% · TaKáBOOM −20%</div>
   <div class="track"><div class="fill" id="fill"></div></div>
   <div class="steps" id="steps"></div>
@@ -197,6 +216,7 @@ footer.ladder{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(env(saf
       <div class="grand"><span>Total</span><span id="total">$0.00</span></div>
     </div>
     <p class="up" id="upsell"></p>
+    <div class="promos" id="promos"></div>
     <div class="actions">
       <button class="btn" id="again" type="button">↺ Seguir tocando</button>
       <a class="btn main" id="pay" href="https://api.whatsapp.com/send/?phone=593969577774" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
@@ -216,15 +236,19 @@ const CONFIG = {
   explota: 18,                 // takas sobre UNA lata para que explote
   escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
   pctExplosion: 20,
-  // Promo de lanzamiento: durante estas fechas el TaKáBOOM da "lleva 5, paga 3" (una vez por pedido; el resto con la tabla).
-  // El pedido paga lo más barato entre ese 5x3 y el −20 %. Al pasar "hasta", vuelve sola al −20 %.
-  promo: { lleva:5, paga:3, maxPorPedido:1, desde:"2026-11-07T00:00:00-05:00", hasta:"2026-11-16T00:00:00-05:00" },
+  // Promo 5x3: el TaKáBOOM da "lleva 5, paga 3" (una vez por pedido; el resto con la tabla).
+  // El pedido paga lo más barato entre ese 5x3 y el −20 %. Sin fecha de fin: para ponerle una, agrega
+  // hasta:"AAAA-MM-DDT00:00:00-05:00" y al pasar esa hora vuelve sola al −20 %. Para apagarla: promo:null.
+  promo: { lleva:5, paga:3, maxPorPedido:1, desde:"2026-11-07T00:00:00-05:00" },
+  tope: { pct:20, minUSD:6 },  // descuento máximo por pedido: 20 % del subtotal (o $6, lo que da el pack 5x3)
+  caja: { latas:24, precio:58 },   // Caja Grupo 24 (envío incluido por ser más de $50). null = apagada
+  regalos: true,               // 5 vacías = 1 llena · Trae a tu pana (máx. 1 lata de regalo por pedido)
   crece: 0.034,                // cuánto crece la lata por taka
   sbUrl: "https://xsivyjkzjrxcvxomgfgg.supabase.co",   // registro de visitas/pedidos por origen
   sbKey: "sb_publishable_cejlzthS0r3MPUay-odAiQ_r_XIzc7C"
 };
 /* promo activa solo entre "desde" y "hasta" */
-const PROMO=(()=>{ const p=CONFIG.promo; if(!p) return null; const t=Date.now(); return t>=Date.parse(p.desde)&&t<Date.parse(p.hasta) ? p : null; })();
+const PROMO=(()=>{ const p=CONFIG.promo; if(!p) return null; const t=Date.now(); return (!p.desde||t>=Date.parse(p.desde)) && (!p.hasta||t<Date.parse(p.hasta)) ? p : null; })();
 const PROMO_TXT=PROMO?PROMO.lleva+"x"+PROMO.paga:"";
 /* ---------------- origen (?o=ig | tt | qr | emb-nombre | ...) ---------------- */
 const ORIGEN = (()=>{
@@ -249,7 +273,10 @@ const FLAV = {
   pina:   {name:"BaTaKá", sabor:"Piña",   color:0xf5a300, css:"#f5a300", glb:"lata_pina.json",   peso:3386048, tex:"tex_pina.jpg",   x:-1, tilt: 0.26},
   cereza: {name:"BaTaKá", sabor:"Cereza", color:0xd0102a, css:"#d0102a", glb:"lata_cereza.json", peso:3330074, tex:"tex_cereza.jpg", x: 1, tilt:-0.26}
 };
-const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, booms:0 };
+const state = { taps:{pina:0, cereza:0}, cart:{pina:0, cereza:0}, exploded:false, booms:0, regalo:null, pana:"" };
+/* link de invitación: ?pana=1 marca "Me invitó un pana" en el carrito */
+try{ const q=new URLSearchParams(location.search); if(q.has("pana")){ state.regalo="pana"; const nm=(q.get("pana")||"").replace(/[^\p{L}\p{N} @._-]/gu,"").slice(0,30); if(nm&&nm!=="1") state.pana=nm; localStorage.setItem("bk_pana",JSON.stringify({p:state.pana,t:Date.now()})); }
+  else { const v=JSON.parse(localStorage.getItem("bk_pana")||"null"); if(v && Date.now()-v.t<14*864e5){ state.regalo="pana"; state.pana=v.p||""; } } }catch(_){}
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------- audio: "ta-ka" sintetizado ---------------- */
@@ -359,20 +386,29 @@ $("steps").innerHTML=steps.map(s=>`<div class="step${s.boom?' boom last':''}" st
 function totalCans(){ return state.cart.pina+state.cart.cereza; }
 function tierPct(n){ let p=0; for(const s of CONFIG.escalones) if(n>=s.latas) p=s.pct; return p; }
 function discountPct(){ return state.exploded ? CONFIG.pctExplosion : tierPct(totalCans()); }   // nivel para celebrar
-/* total del pedido: tabla, o con TaKáBOOM lo más barato entre −20 % y (en promo) un solo 5x3 + el resto con la tabla */
+/* total del pedido: se cobra la opción más barata entre la tabla, el TaKáBOOM (−20 %), un solo 5x3 (+ el resto con la tabla)
+   y la Caja Grupo 24, con un tope de descuento (CONFIG.tope). Los regalos (vacías / pana) van aparte: máx. 1 lata. */
+function tablaTotal(n){ return n*CONFIG.precio*(1-tierPct(n)/100); }
 function pricing(){
-  const n=totalCans(), P=CONFIG.precio, sub=n*P;
-  let total=sub*(1-tierPct(n)/100), label=tierPct(n)?`Descuento −${tierPct(n)}%`:"", tag="";
+  const n=totalCans(), P=CONFIG.precio, sub=n*P, op=[{total:tablaTotal(n), label:tierPct(n)?`Descuento −${tierPct(n)}%`:"", tag:""}];
   if(state.exploded){
-    total=sub*(1-CONFIG.pctExplosion/100); label=`TaKáBOOM −${CONFIG.pctExplosion}%`;
+    op.push({total:sub*(1-CONFIG.pctExplosion/100), label:`TaKáBOOM −${CONFIG.pctExplosion}%`, tag:""});
     if(PROMO && n>=PROMO.lleva){
       const packs=Math.min(PROMO.maxPorPedido, Math.floor(n/PROMO.lleva)), resto=n-packs*PROMO.lleva;
-      const t=packs*PROMO.paga*P + resto*P*(1-tierPct(resto)/100);
-      if(t<total-1e-9){ total=t; tag=PROMO_TXT; label=`TaKáBOOM ${PROMO_TXT}`+(resto?` + ${latas(resto)}`+(tierPct(resto)?` −${tierPct(resto)}%`:""):""); }
+      op.push({total:packs*PROMO.paga*P+tablaTotal(resto), tag:PROMO_TXT,
+        label:`TaKáBOOM ${PROMO_TXT}`+(resto?` + ${latas(resto)}`+(tierPct(resto)?` −${tierPct(resto)}%`:""):"")});
     }
   }
-  total=Math.round(total*100)/100;
-  return {n, sub, total, disc:Math.round((sub-total)*100)/100, pct:sub?Math.round((sub-total)/sub*100):0, label, tag};
+  if(CONFIG.caja && n>=CONFIG.caja.latas){
+    const L=CONFIG.caja.latas, kk=Math.floor(n/L), r=n-kk*L;
+    op.push({total:kk*CONFIG.caja.precio+tablaTotal(r), tag:"Caja"+L, label:`Caja Grupo ${L}`+(kk>1?` ×${kk}`:"")+(r?` + ${latas(r)}`:"")});
+  }
+  let b=op[0]; for(const o of op) if(o.total<b.total-1e-9) b=o;
+  if(CONFIG.tope){ const cap=Math.max(CONFIG.tope.minUSD, sub*CONFIG.tope.pct/100);
+    if(sub-b.total>cap+1e-9) b={total:sub-cap, label:state.exploded?`TaKáBOOM −${CONFIG.tope.pct}%`:`Descuento −${CONFIG.tope.pct}%`, tag:""}; }
+  const total=Math.round(b.total*100)/100;
+  const regalo = !CONFIG.regalos||!n ? null : state.regalo==="vacias" ? "vacias" : (state.regalo==="pana" && n>=6) ? "pana" : null;
+  return {n, sub, total, disc:Math.round((sub-total)*100)/100, pct:sub?Math.round((sub-total)/sub*100):0, label:b.label, tag:b.tag, regalo};
 }
 function money(v){ return "$"+v.toFixed(2); }
 const precioCorto="$"+(CONFIG.precio%1?CONFIG.precio.toFixed(2):CONFIG.precio.toFixed(0));
@@ -523,19 +559,22 @@ function renderCart(){
     <span class="qty"><button type="button" data-id="${id}" data-d="-1" aria-label="Quitar una">−</button><span class="q">${state.cart[id]}</span><button type="button" data-id="${id}" data-d="1" aria-label="Agregar una">+</button></span>
     <span class="p">${money(state.cart[id]*CONFIG.precio)}</span></div>`).join("")
     : `<p style="margin:0;color:#6b5a48">Todavía no hay latas. Toca una para sumarla ↑</p>`;
+  const prR=pricing(); if(prR.regalo) $("rows").insertAdjacentHTML("beforeend",`<div class="row regalo"><span class="dot" style="background:linear-gradient(90deg,var(--pina) 50%,var(--cereza) 50%)"></span><span>+1 BaTaKá de regalo <small>(${prR.regalo==="pana"?"Trae a tu pana":"5 vacías = 1 llena"} · se confirma por WhatsApp)</small></span><span></span><span class="p">$0.00</span></div>`);
+  renderPromos(prR);
   const pr=pricing(), pct=pr.pct;
   const sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
-  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(pr.total)}${pr.tag?" \u{1F3F7}\uFE0F"+pr.tag:""} · ${ORIGEN}`;
+  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(pr.total)}${pr.tag?" \u{1F3F7}\uFE0F"+pr.tag:""}${pr.regalo?" \u{1F3F7}\uFE0F+1 "+(pr.regalo==="pana"?"pana"+(state.pana?":"+state.pana:""):"vacías"):""} · ${ORIGEN}`;
   $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
   $("subtotal").textContent=money(pr.sub); $("discLabel").textContent=pr.label||"Descuento"; $("disc").textContent="−"+money(pr.disc); $("total").textContent=money(pr.total);
   $("discRow").hidden=!(pr.disc>0);
-  $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! ${pr.tag||"−"+CONFIG.pctExplosion+"%"}</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
+  $("badgeWrap").innerHTML = pr.tag&&pr.tag.startsWith("Caja") ? `<span class="badge">${pr.label}</span>` : state.exploded ? `<span class="badge">TaKáBOOM! ${pr.tag||"−"+CONFIG.pctExplosion+"%"}</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
   $("cartSub").textContent = `${latas(totalCans())} de 500 ml · ${money(CONFIG.precio)} c/u`;
   const n=totalCans(), next=CONFIG.escalones.find(s=>n<s.latas);
   const BT = PROMO ? `<b>${PROMO_TXT}</b> (lleva ${PROMO.lleva}, paga ${PROMO.paga})` : `<b>−${CONFIG.pctExplosion}%</b>`;
   $("upsell").innerHTML = !n ? ""
     : state.exploded ? (PROMO && n<PROMO.lleva ? `Suma <b>${latas(PROMO.lleva-n)}</b> más y llévate <b>${PROMO.lleva} por ${money(PROMO.paga*CONFIG.precio)}</b>.`
-        : pr.tag ? `${PROMO_TXT} de lanzamiento: uno por pedido, hasta el domingo 15 de noviembre.`+(n>PROMO.lleva?`<br><button type="button" class="solo5" id="solo5">Quedarme con ${PROMO.lleva} por $${PROMO.paga*CONFIG.precio%1?(PROMO.paga*CONFIG.precio).toFixed(2):PROMO.paga*CONFIG.precio}</button>`:"") : "")
+        : PROMO ? (pr.tag===PROMO_TXT&&n===PROMO.lleva ? `${PROMO_TXT}: uno por pedido.` : `Tu TaKáBOOM también vale el <b>${PROMO_TXT}</b>: ${PROMO.lleva} latas por $${PROMO.paga*CONFIG.precio}.`)+(n>PROMO.lleva?`<br><button type="button" class="solo5" id="solo5">Quedarme con ${PROMO.lleva} por $${PROMO.paga*CONFIG.precio%1?(PROMO.paga*CONFIG.precio).toFixed(2):PROMO.paga*CONFIG.precio}</button>`:"") : "")
+    : CONFIG.caja && n>=CONFIG.caja.latas-6 && n<CONFIG.caja.latas ? `Suma <b>${latas(CONFIG.caja.latas-n)}</b> y es <b>Caja Grupo ${CONFIG.caja.latas}: $${CONFIG.caja.precio}</b> con envío incluido.`
     : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: ${BT}.`
     : `Haz explotar una lata: ${BT}.`;
 }
@@ -543,11 +582,39 @@ function renderCart(){
 $("upsell").addEventListener("click",e=>{ if(!e.target.closest("#solo5")||!PROMO) return; const n=totalCans(), L=PROMO.lleva; if(n<=L) return;
   let p=Math.round(L*state.cart.pina/n); if(state.cart.pina>0&&p===0) p=1; if(state.cart.cereza>0&&p===L) p=L-1;
   state.cart.pina=p; state.cart.cereza=L-p; renderCart(); refreshHUD(); });
+/* ---------------- promos en el carrito ---------------- */
+function mezcla(L){ const n=totalCans(); if(!n){ state.cart.pina=Math.ceil(L/2); state.cart.cereza=Math.floor(L/2); return; }
+  let p=Math.round(L*state.cart.pina/n); if(state.cart.pina>0&&p===0) p=1; if(state.cart.cereza>0&&p===L) p=L-1; state.cart.pina=p; state.cart.cereza=L-p; }
+function renderPromos(pr){
+  const box=$("promos"); if(!box) return; const n=totalCans(), C=CONFIG.caja;
+  const chips=[];
+  if(C) chips.push(`<button type="button" class="pchip caja${pr.tag==="Caja"+C.latas?" on":""}" data-p="caja"><b>Caja Grupo ${C.latas} · $${C.precio}</b><span>${pr.tag==="Caja"+C.latas?"Aplicada · envío incluido":"Envío incluido · toca para armarla"}</span></button>`);
+  if(CONFIG.regalos){
+    chips.push(`<button type="button" class="pchip${state.regalo==="vacias"?" on":""}" data-p="vacias" aria-pressed="${state.regalo==="vacias"}"><b>5 vacías = 1 llena</b><span>Entregas 5 latas vacías + story @drinkbataka</span></button>`);
+    chips.push(`<button type="button" class="pchip${state.regalo==="pana"?" on":""}" data-p="pana" aria-pressed="${state.regalo==="pana"}"><b>Me invitó un pana</b><span>${n>=6?"Los dos ganan 1 lata":"Desde 6 latas: los dos ganan 1"}</span></button>`);
+    chips.push(`<button type="button" class="pchip inv" data-p="invita"><b>Invita a tu pana →</b><span>Comparte tu link: 1 lata para cada uno</span></button>`);
+  }
+  box.innerHTML=`<div class="plab">Promos BaTaKá · máx. 1 lata de regalo por pedido</div><div class="pscroll">${chips.join("")}</div>`+
+    (state.regalo==="pana"?`<input class="pana" id="panaNombre" maxlength="30" placeholder="¿Quién te invitó? (nombre o @)" value="${(state.pana||"").replace(/"/g,"")}">`:"");
+}
+$("promos").addEventListener("click",async e=>{ const b=e.target.closest(".pchip"); if(!b) return; const k=b.dataset.p;
+  if(k==="caja"){ mezcla(CONFIG.caja.latas); }
+  else if(k==="vacias"||k==="pana"){ state.regalo = state.regalo===k ? null : k; }
+  else if(k==="invita"){ const url=`${location.origin}/?pana=1&o=pana`, txt=`TaKá! Prueba BaTaKá: entra a ${url}, haz TaKáBOOM y en tu primer pedido de 6 latas o más di que te invité. Los dos ganamos 1 lata 🍍🍒`;
+    logEvento({tipo:"invita"});
+    if(navigator.share){ try{ await navigator.share({title:"BaTaKá",text:txt}); return; }catch(_){ } }
+    window.open(`https://api.whatsapp.com/send/?text=${encodeURIComponent(txt)}`,"_blank","noopener"); return; }
+  renderCart(); refreshHUD(); });
+$("promos").addEventListener("input",e=>{ if(e.target.id!=="panaNombre") return; state.pana=e.target.value.replace(/[^\p{L}\p{N} @._-]/gu,"").slice(0,30);
+  try{ localStorage.setItem("bk_pana",JSON.stringify({p:state.pana,t:Date.now()})); }catch(_){}
+  const pr=pricing(), sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
+  $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(pr.total)}${pr.tag?" \u{1F3F7}\uFE0F"+pr.tag:""}${pr.regalo?" \u{1F3F7}\uFE0F+1 "+(pr.regalo==="pana"?"pana"+(state.pana?":"+state.pana:""):"vacías"):""} · ${ORIGEN}`)}&type=phone_number&app_absent=0`; });
 const NOTA="Te confirmamos disponibilidad, pago y entrega por WhatsApp. Pedidos en Quito. Solo para mayores de 18 años.";
 $("rows").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id; state.cart[id]=Math.max(0,state.cart[id]+(+b.dataset.d)); renderCart(); refreshHUD(); });
 let antesDelCarrito=null;
-function openCart(){ renderCart(); $("note").textContent=NOTA; antesDelCarrito=document.activeElement; $("sheet").classList.add("open"); setTimeout(()=>$("pay").focus({preventScroll:true}),60); }
+function openCart(){ hideCoach(); renderCart(); $("note").textContent=NOTA; antesDelCarrito=document.activeElement; $("sheet").classList.add("open"); setTimeout(()=>$("pay").focus({preventScroll:true}),60); }
 $("cartBtn").addEventListener("click",()=>{ audio(); openCart(); });
+$("ticker").addEventListener("click",()=>{ audio(); openCart(); setTimeout(()=>{ const p=$("promos"); if(p) p.scrollIntoView({block:"center",behavior:"smooth"}); },350); });
 $("cta").addEventListener("click",()=>{ audio(); openCart(); });
 $("sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeCart(); });
 $("closeCart").addEventListener("click",closeCart);
