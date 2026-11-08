@@ -215,10 +215,16 @@ const CONFIG = {
   explota: 18,                 // takas sobre UNA lata para que explote
   escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
   pctExplosion: 20,
+  // Promo de lanzamiento: durante estas fechas el TaKáBOOM da "lleva 5, paga 3" (una vez por pedido; el resto con la tabla).
+  // El pedido paga lo más barato entre ese 5x3 y el −20 %. Al pasar "hasta", vuelve sola al −20 %.
+  promo: { lleva:5, paga:3, maxPorPedido:1, desde:"2026-11-07T00:00:00-05:00", hasta:"2026-11-16T00:00:00-05:00" },
   crece: 0.034,                // cuánto crece la lata por taka
   sbUrl: "https://xsivyjkzjrxcvxomgfgg.supabase.co",   // registro de visitas/pedidos por origen
   sbKey: "sb_publishable_cejlzthS0r3MPUay-odAiQ_r_XIzc7C"
 };
+/* promo activa solo entre "desde" y "hasta" */
+const PROMO=(()=>{ const p=CONFIG.promo; if(!p) return null; const t=Date.now(); return t>=Date.parse(p.desde)&&t<Date.parse(p.hasta) ? p : null; })();
+const PROMO_TXT=PROMO?PROMO.lleva+"x"+PROMO.paga:"";
 /* ---------------- origen (?o=ig | tt | qr | emb-nombre | ...) ---------------- */
 const ORIGEN = (()=>{
   const clean=v=>(v||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);
@@ -346,11 +352,27 @@ addEventListener("resize",layout);
 
 /* ---------------- UI ---------------- */
 const $=id=>document.getElementById(id);
-const steps=[...CONFIG.escalones.map(s=>({at:s.latas,txt:"−"+s.pct+"%",lab:s.latas+" latas"})),{at:CONFIG.explota,txt:"TaKáBOOM",lab:"−"+CONFIG.pctExplosion+"%",boom:true}];
+const steps=[...CONFIG.escalones.map(s=>({at:s.latas,txt:"−"+s.pct+"%",lab:s.latas+" latas"})),{at:CONFIG.explota,txt:"TaKáBOOM",lab:PROMO?PROMO_TXT:"−"+CONFIG.pctExplosion+"%",boom:true}];
 const maxSteps=CONFIG.explota;
 $("steps").innerHTML=steps.map(s=>`<div class="step${s.boom?' boom last':''}" style="left:${(s.at/maxSteps*100).toFixed(1)}%"><b>${s.txt}</b>${s.lab}</div>`).join("");
 function totalCans(){ return state.cart.pina+state.cart.cereza; }
-function discountPct(){ if(state.exploded) return CONFIG.pctExplosion; let p=0; for(const s of CONFIG.escalones) if(totalCans()>=s.latas) p=s.pct; return p; }
+function tierPct(n){ let p=0; for(const s of CONFIG.escalones) if(n>=s.latas) p=s.pct; return p; }
+function discountPct(){ return state.exploded ? CONFIG.pctExplosion : tierPct(totalCans()); }   // nivel para celebrar
+/* total del pedido: tabla, o con TaKáBOOM lo más barato entre −20 % y (en promo) un solo 5x3 + el resto con la tabla */
+function pricing(){
+  const n=totalCans(), P=CONFIG.precio, sub=n*P;
+  let total=sub*(1-tierPct(n)/100), label=tierPct(n)?`Descuento −${tierPct(n)}%`:"", tag="";
+  if(state.exploded){
+    total=sub*(1-CONFIG.pctExplosion/100); label=`TaKáBOOM −${CONFIG.pctExplosion}%`;
+    if(PROMO && n>=PROMO.lleva){
+      const packs=Math.min(PROMO.maxPorPedido, Math.floor(n/PROMO.lleva)), resto=n-packs*PROMO.lleva;
+      const t=packs*PROMO.paga*P + resto*P*(1-tierPct(resto)/100);
+      if(t<total-1e-9){ total=t; tag=PROMO_TXT; label=`TaKáBOOM ${PROMO_TXT}`+(resto?` + ${latas(resto)}`+(tierPct(resto)?` −${tierPct(resto)}%`:""):""); }
+    }
+  }
+  total=Math.round(total*100)/100;
+  return {n, sub, total, disc:Math.round((sub-total)*100)/100, pct:sub?Math.round((sub-total)/sub*100):0, label, tag};
+}
 function money(v){ return "$"+v.toFixed(2); }
 const precioCorto="$"+(CONFIG.precio%1?CONFIG.precio.toFixed(2):CONFIG.precio.toFixed(0));
 const latas=n=>n+(n===1?" lata":" latas");
@@ -364,17 +386,20 @@ function refreshHUD(){
   $("fill").style.width=Math.min(100,Math.max(n,best)/maxSteps*100)+"%";
   [...$("steps").children].forEach((el,i)=>el.classList.toggle("on", steps[i].boom?state.exploded:n>=steps[i].at));
   const next=CONFIG.escalones.find(s=>n<s.latas);
-  $("hint").innerHTML = state.exploded ? `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> −${CONFIG.pctExplosion}% en todo tu pedido`
-    : n===0 ? `Cada toque suma <b>1 lata</b> · Mantén presionado y hazla explotar: <b>−${CONFIG.pctExplosion}%</b>`
+  const BOOMTXT = PROMO ? PROMO_TXT : "−"+CONFIG.pctExplosion+"%";
+  $("hint").innerHTML = state.exploded ? (PROMO ? (n>=PROMO.lleva ? `<b>TaKáBOOM!!! ${PROMO_TXT}</b> · ${latas(n)} por <b>${money(pricing().total)}</b>`
+        : `<b>TaKáBOOM!!!</b> −${CONFIG.pctExplosion}% · con <b>${PROMO.lleva} BaTaKáS</b> es <b>${PROMO_TXT}</b>`)
+      : `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> −${CONFIG.pctExplosion}% en todo tu pedido`)
+    : n===0 ? `Cada toque suma <b>1 lata</b> · Mantén presionado y hazla explotar: <b>${BOOMTXT}</b>`
     : next ? `<b>${latas(n)}</b> · ${next.latas-n===1?"falta":"faltan"} <b>${next.latas-n}</b> para <b>−${next.pct}%</b>`
-    : `<b>−${discountPct()}%</b> listo · haz explotar una lata: <b>−${CONFIG.pctExplosion}%</b>`;
+    : `<b>−${discountPct()}%</b> listo · haz explotar una lata: <b>${BOOMTXT}</b>`;
   // botón de pedido
-  const pct=discountPct(), sub=n*CONFIG.precio, cta=$("cta");
+  const pct=discountPct(), pr=pricing(), cta=$("cta");
   if(n>0 && !cta.classList.contains("on")){ cta.classList.add("on"); }
   else if(n===0) cta.classList.remove("on");
   cta.classList.toggle("boom", state.exploded);
   $("ctaTxt").innerHTML=`TaKá! Pedir <b>${latas(n)}</b>`;
-  $("ctaPrice").innerHTML=(pct?`<s>${money(sub)}</s>`:"")+money(sub*(1-pct/100))+" →";
+  $("ctaPrice").innerHTML=(pr.disc>0?`<s>${money(pr.sub)}</s>`:"")+money(pr.total)+" →";
   if(pct>celebrado){ celebrado=pct; celebrate(pct); }
 }
 /* escalón desbloqueado: número grande, campanita y el botón de pedido salta */
@@ -383,7 +408,7 @@ function celebrate(pct){
   setTimeout(()=>{
     if(!esBoom) ding(CONFIG.escalones.findIndex(s=>s.pct===pct)+1);
     document.querySelectorAll(".big").forEach(e=>e.remove());          // si llegan dos escalones seguidos, queda el último
-    const el=document.createElement("div"); el.className="big"; el.innerHTML=`<b>−${pct}%</b><small>${esBoom?"TaKáBOOM! en todo tu pedido":"TaKá! desbloqueado"}</small>`;
+    const el=document.createElement("div"); el.className="big"; el.innerHTML = esBoom&&PROMO ? `<b>${PROMO_TXT}</b><small>TaKáBOOM! lleva ${PROMO.lleva}, paga ${PROMO.paga}</small>` : `<b>−${pct}%</b><small>${esBoom?"TaKáBOOM! en todo tu pedido":"TaKá! desbloqueado"}</small>`;
     document.body.appendChild(el);
     el.animate(reduce?[{opacity:1},{opacity:0}]:[{transform:"translate(-50%,-50%) scale(.3) rotate(-10deg)",opacity:0},{transform:"translate(-50%,-50%) scale(1.12) rotate(3deg)",opacity:1,offset:.25},{transform:"translate(-50%,-50%) scale(1) rotate(-2deg)",opacity:1,offset:.7},{transform:"translate(-50%,-62%) scale(.9) rotate(-2deg)",opacity:0}],
       {duration:reduce?900:1500,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=()=>el.remove();
@@ -497,17 +522,21 @@ function renderCart(){
     <span class="qty"><button type="button" data-id="${id}" data-d="-1" aria-label="Quitar una">−</button><span class="q">${state.cart[id]}</span><button type="button" data-id="${id}" data-d="1" aria-label="Agregar una">+</button></span>
     <span class="p">${money(state.cart[id]*CONFIG.precio)}</span></div>`).join("")
     : `<p style="margin:0;color:#6b5a48">Todavía no hay latas. Toca una para sumarla ↑</p>`;
-  const sub=totalCans()*CONFIG.precio, pct=discountPct(), d=sub*pct/100;
+  const pr=pricing(), pct=pr.pct;
   const sab=[state.cart.pina?`\u{1F34D}\u00D7${state.cart.pina}`:"", state.cart.cereza?`\u{1F352}\u00D7${state.cart.cereza}`:""].filter(Boolean).join(" ");
-  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(sub-d)} · ${ORIGEN}`;
+  const msg=`TaKá! BaTaKá? TaKá ${sab} → ${totalCans()} BaTaKáS TaKá ${money(pr.total)}${pr.tag?" \u{1F3F7}\uFE0F"+pr.tag:""} · ${ORIGEN}`;
   $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
-  $("subtotal").textContent=money(sub); $("discLabel").textContent=state.exploded?`TaKáBOOM −${pct}%`:`Descuento −${pct}%`; $("disc").textContent="−"+money(d); $("total").textContent=money(sub-d);
-  $("discRow").hidden=!pct;
-  $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! −${CONFIG.pctExplosion}%</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
+  $("subtotal").textContent=money(pr.sub); $("discLabel").textContent=pr.label||"Descuento"; $("disc").textContent="−"+money(pr.disc); $("total").textContent=money(pr.total);
+  $("discRow").hidden=!(pr.disc>0);
+  $("badgeWrap").innerHTML = state.exploded ? `<span class="badge">TaKáBOOM! ${pr.tag||"−"+CONFIG.pctExplosion+"%"}</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
   $("cartSub").textContent = `${latas(totalCans())} de 500 ml · ${money(CONFIG.precio)} c/u`;
   const n=totalCans(), next=CONFIG.escalones.find(s=>n<s.latas);
-  $("upsell").innerHTML = state.exploded || !n ? "" : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: <b>−${CONFIG.pctExplosion}%</b>.`
-    : `Haz explotar una lata y el descuento sube a <b>−${CONFIG.pctExplosion}%</b>.`;
+  const BT = PROMO ? `<b>${PROMO_TXT}</b> (lleva ${PROMO.lleva}, paga ${PROMO.paga})` : `<b>−${CONFIG.pctExplosion}%</b>`;
+  $("upsell").innerHTML = !n ? ""
+    : state.exploded ? (PROMO && n<PROMO.lleva ? `Suma <b>${latas(PROMO.lleva-n)}</b> más y llévate <b>${PROMO.lleva} por ${money(PROMO.paga*CONFIG.precio)}</b>.`
+        : pr.tag ? `${PROMO_TXT} de lanzamiento: uno por pedido, hasta el domingo 15 de noviembre.` : "")
+    : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: ${BT}.`
+    : `Haz explotar una lata: ${BT}.`;
 }
 const NOTA="Te confirmamos disponibilidad, pago y entrega por WhatsApp. Pedidos en Quito. Solo para mayores de 18 años.";
 $("rows").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id; state.cart[id]=Math.max(0,state.cart[id]+(+b.dataset.d)); renderCart(); refreshHUD(); });
@@ -521,8 +550,8 @@ addEventListener("keydown",e=>{ if(e.key==="Escape" && $("sheet").classList.cont
 function closeCart(){ $("sheet").classList.remove("open"); if(antesDelCarrito&&antesDelCarrito.focus) try{ antesDelCarrito.focus({preventScroll:true}); }catch(_){} }
 $("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
 $("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="Toca una lata para sumarla a tu pedido ↑"; } else { $("note").textContent="TaKá! Abriendo WhatsApp… (+593 96 957 7774)";
-    const sub=totalCans()*CONFIG.precio, pct=discountPct();
-    logEvento({tipo:"pedido", pina:state.cart.pina, cereza:state.cart.cereza, latas:totalCans(), total:+(sub*(1-pct/100)).toFixed(2), descuento_pct:pct, booms:state.booms||0}); } });
+    const pr=pricing();
+    logEvento({tipo:"pedido", pina:state.cart.pina, cereza:state.cart.cereza, latas:totalCans(), total:pr.total, descuento_pct:pr.pct, booms:state.booms||0}); } });
 /* sonido on/off */
 function pintaSonido(){ const b=$("sndBtn"); b.setAttribute("aria-pressed",muted?"true":"false"); b.setAttribute("aria-label",muted?"Activar el sonido":"Silenciar el sonido"); }
 pintaSonido();
@@ -534,7 +563,7 @@ const coach=$("coach"); let coachOn=false, coachT=null;
 function showCoach(){ if(state.taps.pina+state.taps.cereza>0||totalCans()>0) return; coachOn=true; coach.classList.add("on");
   let hold=false;
   const paso=()=>{ if(!coachOn) return; coachT=setTimeout(()=>{ hold=!hold; coach.classList.toggle("hold",hold);
-    $("coachTxt").innerHTML = hold ? `<b>Mantén</b> = TaKáBOOM −${CONFIG.pctExplosion}%` : `<b>Toca</b> = +1 lata`; paso(); }, hold?2400:3200); };
+    $("coachTxt").innerHTML = hold ? `<b>Mantén</b> = TaKáBOOM ${PROMO?PROMO_TXT:"−"+CONFIG.pctExplosion+"%"}` : `<b>Toca</b> = +1 lata`; paso(); }, hold?2400:3200); };
   paso(); }
 function hideCoach(){ if(!coachOn) return; coachOn=false; clearTimeout(coachT); coach.classList.remove("on"); }
 const vCoach=new THREE.Vector3();
