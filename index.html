@@ -14,7 +14,8 @@
 <title>BaTaKá TaKá · Toca, suma latas y pide por WhatsApp</title>
 <meta name="theme-color" content="#140d08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8D%8D%3C/text%3E%3C/svg%3E">
-<style>[hidden]{display:none!important}</style></head><body>
+<style>[hidden]{display:none!important}.solo5{display:inline-block;margin-top:10px;padding:10px 16px;border-radius:12px;border:2px solid #140d08;background:#f5a300;color:#140d08;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 3px 0 #140d08}
+</style></head><body>
 <h1 style="position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">BaTaKá: bebida en lata de piña y cereza, pedidos en Quito por WhatsApp</h1>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -534,10 +535,14 @@ function renderCart(){
   const BT = PROMO ? `<b>${PROMO_TXT}</b> (lleva ${PROMO.lleva}, paga ${PROMO.paga})` : `<b>−${CONFIG.pctExplosion}%</b>`;
   $("upsell").innerHTML = !n ? ""
     : state.exploded ? (PROMO && n<PROMO.lleva ? `Suma <b>${latas(PROMO.lleva-n)}</b> más y llévate <b>${PROMO.lleva} por ${money(PROMO.paga*CONFIG.precio)}</b>.`
-        : pr.tag ? `${PROMO_TXT} de lanzamiento: uno por pedido, hasta el domingo 15 de noviembre.` : "")
+        : pr.tag ? `${PROMO_TXT} de lanzamiento: uno por pedido, hasta el domingo 15 de noviembre.`+(n>PROMO.lleva?`<br><button type="button" class="solo5" id="solo5">Quedarme con ${PROMO.lleva} por $${PROMO.paga*CONFIG.precio%1?(PROMO.paga*CONFIG.precio).toFixed(2):PROMO.paga*CONFIG.precio}</button>`:"") : "")
     : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: ${BT}.`
     : `Haz explotar una lata: ${BT}.`;
 }
+/* 5x3: dejar el pedido en 5 latas manteniendo la mezcla de sabores */
+$("upsell").addEventListener("click",e=>{ if(!e.target.closest("#solo5")||!PROMO) return; const n=totalCans(), L=PROMO.lleva; if(n<=L) return;
+  let p=Math.round(L*state.cart.pina/n); if(state.cart.pina>0&&p===0) p=1; if(state.cart.cereza>0&&p===L) p=L-1;
+  state.cart.pina=p; state.cart.cereza=L-p; renderCart(); refreshHUD(); });
 const NOTA="Te confirmamos disponibilidad, pago y entrega por WhatsApp. Pedidos en Quito. Solo para mayores de 18 años.";
 $("rows").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id; state.cart[id]=Math.max(0,state.cart[id]+(+b.dataset.d)); renderCart(); refreshHUD(); });
 let antesDelCarrito=null;
