@@ -219,7 +219,7 @@ input.pana{width:100%;box-sizing:border-box;margin-top:4px;border:2px solid var(
     <div class="promos" id="promos"></div>
     <div class="actions">
       <button class="btn" id="again" type="button">↺ Seguir tocando</button>
-      <a class="btn main" id="pay" href="https://api.whatsapp.com/send/?phone=593969577774" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
+      <a class="btn main" id="pay" href="https://api.whatsapp.com/send/?phone=593969235680" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
     </div>
     <p class="note" id="note"></p>
   </div>
@@ -232,7 +232,7 @@ input.pana{width:100%;box-sizing:border-box;margin-top:4px;border:2px solid var(
 /* ---------------- configuración (editable) ---------------- */
 const CONFIG = {
   precio: 3.00,                // USD por lata
-  whatsapp: "593969577774",    // número de pedidos (Ecuador +593, sin el 0 inicial)
+  whatsapp: "593969235680",    // número de pedidos (Ecuador +593, sin el 0 inicial)
   explota: 18,                 // takas sobre UNA lata para que explote
   escalones: [ {latas:6, pct:10}, {latas:12, pct:15} ],
   pctExplosion: 20,
@@ -621,7 +621,7 @@ $("closeCart").addEventListener("click",closeCart);
 addEventListener("keydown",e=>{ if(e.key==="Escape" && $("sheet").classList.contains("open")) closeCart(); });
 function closeCart(){ $("sheet").classList.remove("open"); if(antesDelCarrito&&antesDelCarrito.focus) try{ antesDelCarrito.focus({preventScroll:true}); }catch(_){} }
 $("again").addEventListener("click",()=>{ closeCart(); resetCans(); });
-$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="Toca una lata para sumarla a tu pedido ↑"; } else { $("note").textContent="TaKá! Abriendo WhatsApp… (+593 96 957 7774)";
+$("pay").addEventListener("click",e=>{ if(totalCans()===0){ e.preventDefault(); $("note").textContent="Toca una lata para sumarla a tu pedido ↑"; } else { $("note").textContent="TaKá! Abriendo WhatsApp… (+593 96 923 5680)";
     const pr=pricing();
     logEvento({tipo:"pedido", pina:state.cart.pina, cereza:state.cart.cereza, latas:totalCans(), total:pr.total, descuento_pct:pr.pct, booms:state.booms||0}); } });
 /* sonido on/off */
