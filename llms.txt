@@ -1,0 +1,22 @@
+# BaTaKá
+
+> BaTaKá es una bebida energizante ecuatoriana en lata de 500 ml, en sabores piña y cereza, fabricada en Ecuador. Se pide en la web y se confirma por WhatsApp, con entrega en Quito. Solo para mayores de 18 años.
+
+BaTaKá es una marca de Creative Whisper (Quito, Ecuador): https://creativewhisper.net
+
+## Producto
+- BaTaKá sabor piña, lata de 500 ml: US$ 3.
+- BaTaKá sabor cereza, lata de 500 ml: US$ 3.
+- Descuentos por volumen al armar el pedido en la web.
+
+## Cómo comprar
+- Web con el pedido: https://batakataka.github.io/
+- WhatsApp: +593 96 923 5680 (https://wa.me/593969235680)
+- Entregas en Quito, Ecuador.
+
+## Aviso
+Solo para mayores de 18 años. No recomendada durante actividad física ni para mezclar con alcohol.
+
+## Redes
+- Instagram: https://www.instagram.com/drinkbataka/
+- LinkedIn: https://www.linkedin.com/company/drinkbataka
