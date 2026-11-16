@@ -966,5 +966,65 @@
   "w46_S-sab-3_1101": {
     "media_id": "17921276694253818",
     "publicado": "2026-11-14T17:09:29+00:00"
+  },
+  "w46_sab-2": {
+    "media_id": "17905158171372205",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-sab-4_1315": {
+    "media_id": "17966467245239665",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-sab-5_1600": {
+    "media_id": "17999825955013540",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_sab-3": {
+    "media_id": "17979516495173625",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-sab-6_1915": {
+    "media_id": "18078204278473248",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-sab-7_2230": {
+    "media_id": "17968404530981322",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-dom-1_0830": {
+    "media_id": "18651805306042934",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_dom-1": {
+    "media_id": "18109291771986270",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_dom-2": {
+    "media_id": "18120433775088417",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-dom-2_1315": {
+    "media_id": "17920149540468645",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-dom-3_1600": {
+    "media_id": "18045713849837564",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
+  },
+  "w46_S-dom-4_1601": {
+    "media_id": "18106716722022670",
+    "publicado": "2026-11-15",
+    "nota": "recuperado del log del run #140 (el registro no se guardó por el error)"
   }
 }
