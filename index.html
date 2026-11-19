@@ -243,6 +243,8 @@ const CONFIG = {
   promo: { lleva:5, paga:3, maxPorPedido:1, desde:"2026-11-07T00:00:00-05:00" },
   tope: { pct:20, minUSD:6 },  // descuento máximo por pedido: 20 % del subtotal (o $6, lo que da el pack 5x3)
   caja: { latas:24, precio:58 },   // Caja Grupo 24 (envío incluido por ser más de $50). null = apagada
+  // Navidad 2026 · «Amigo secreto TaKá»: cada grupo de 6 latas a $15 (el resto, con la tabla). Se apaga sola al pasar "hasta". null = apagada
+  navidad: { pack:6, precio:15, desde:"2026-11-19T00:00:00-05:00", hasta:"2026-12-25T00:00:00-05:00", tag:"Navidad" },
   regalos: true,               // 5 vacías = 1 llena · Trae a tu pana (máx. 1 lata de regalo por pedido)
   crece: 0.034,                // cuánto crece la lata por taka
   sbUrl: "https://xsivyjkzjrxcvxomgfgg.supabase.co",   // registro de visitas/pedidos por origen
@@ -251,6 +253,9 @@ const CONFIG = {
 /* promo activa solo entre "desde" y "hasta" */
 const PROMO=(()=>{ const p=CONFIG.promo; if(!p) return null; const t=Date.now(); return (!p.desde||t>=Date.parse(p.desde)) && (!p.hasta||t<Date.parse(p.hasta)) ? p : null; })();
 const PROMO_TXT=PROMO?PROMO.lleva+"x"+PROMO.paga:"";
+/* Navidad: activa solo entre "desde" y "hasta" */
+const NAV=(()=>{ const p=CONFIG.navidad; if(!p) return null; const t=Date.now(); return (!p.desde||t>=Date.parse(p.desde)) && (!p.hasta||t<Date.parse(p.hasta)) ? p : null; })();
+if(NAV){ const tk=document.querySelector("#ticker .tk"); if(tk){ const it=`<i class="y">Navidad: ${NAV.pack} BaTaKáS por $${NAV.precio}</i> · `; tk.innerHTML=tk.innerHTML.split("<i class=\"y\">5x3").join(it+"<i class=\"y\">5x3"); } }
 /* ---------------- origen (?o=ig | tt | qr | emb-nombre | ...) ---------------- */
 const ORIGEN = (()=>{
   const clean=v=>(v||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,40);
@@ -400,6 +405,10 @@ function pricing(){
         label:`TaKáBOOM ${PROMO_TXT}`+(resto?` + ${latas(resto)}`+(tierPct(resto)?` −${tierPct(resto)}%`:""):"")});
     }
   }
+  if(NAV && n>=NAV.pack){
+    const kk=Math.floor(n/NAV.pack), r=n-kk*NAV.pack;
+    op.push({total:kk*NAV.precio+tablaTotal(r), tag:NAV.tag, label:`Amigo secreto TaKá`+(kk>1?` ×${kk}`:"")+(r?` + ${latas(r)}`:"")});
+  }
   if(CONFIG.caja && n>=CONFIG.caja.latas){
     const L=CONFIG.caja.latas, kk=Math.floor(n/L), r=n-kk*L;
     op.push({total:kk*CONFIG.caja.precio+tablaTotal(r), tag:"Caja"+L, label:`Caja Grupo ${L}`+(kk>1?` ×${kk}`:"")+(r?` + ${latas(r)}`:"")});
@@ -428,6 +437,9 @@ function refreshHUD(){
   $("hint").innerHTML = state.exploded ? (PROMO ? (n>=PROMO.lleva ? (pricing().tag===PROMO_TXT ? `<b>TaKáBOOM!!! ${PROMO_TXT}</b> · ${latas(n)} por <b>${money(pricing().total)}</b>` : `<b>TaKáBOOM!!!</b> ${latas(n)} por <b>${money(pricing().total)}</b> · o ${PROMO.lleva} por <b>$${PROMO.paga*CONFIG.precio}</b>`)
         : `<b>TaKáBOOM!!!</b> −${CONFIG.pctExplosion}% · con <b>${PROMO.lleva} BaTaKáS</b> es <b>${PROMO_TXT}</b>`)
       : `<b>TaKáBOOM${state.booms>1?" ×"+state.booms:""}!!!</b> −${CONFIG.pctExplosion}% en todo tu pedido`)
+    : NAV && n===0 ? `Cada toque suma <b>1 lata</b> · Navidad: <b>${NAV.pack} por $${NAV.precio}</b>`
+    : NAV && n<NAV.pack ? `<b>${latas(n)}</b> · ${NAV.pack-n===1?"falta":"faltan"} <b>${NAV.pack-n}</b> para <b>${NAV.pack} por $${NAV.precio}</b>`
+    : NAV && pricing().tag===NAV.tag ? `<b>Amigo secreto TaKá</b> · ${latas(n)} por <b>${money(pricing().total)}</b>`
     : n===0 ? `Cada toque suma <b>1 lata</b> · Mantén presionado y hazla explotar: <b>${BOOMTXT}</b>`
     : next ? `<b>${latas(n)}</b> · ${next.latas-n===1?"falta":"faltan"} <b>${next.latas-n}</b> para <b>−${next.pct}%</b>`
     : `<b>−${discountPct()}%</b> listo · haz explotar una lata: <b>${BOOMTXT}</b>`;
@@ -568,13 +580,14 @@ function renderCart(){
   $("pay").href=`https://api.whatsapp.com/send/?phone=${CONFIG.whatsapp}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
   $("subtotal").textContent=money(pr.sub); $("discLabel").textContent=pr.label||"Descuento"; $("disc").textContent="−"+money(pr.disc); $("total").textContent=money(pr.total);
   $("discRow").hidden=!(pr.disc>0);
-  $("badgeWrap").innerHTML = pr.tag&&pr.tag.startsWith("Caja") ? `<span class="badge">${pr.label}</span>` : state.exploded ? `<span class="badge">TaKáBOOM! ${pr.tag||"−"+CONFIG.pctExplosion+"%"}</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
+  $("badgeWrap").innerHTML = pr.tag&&(pr.tag.startsWith("Caja")||(NAV&&pr.tag===NAV.tag)) ? `<span class="badge">${pr.label}</span>` : state.exploded ? `<span class="badge">TaKáBOOM! ${pr.tag||"−"+CONFIG.pctExplosion+"%"}</span>` : pct ? `<span class="badge">TaKá! −${pct}%</span>` : "";
   $("cartSub").textContent = `${latas(totalCans())} de 500 ml · ${money(CONFIG.precio)} c/u`;
   const n=totalCans(), next=CONFIG.escalones.find(s=>n<s.latas);
   const BT = PROMO ? `<b>${PROMO_TXT}</b> (lleva ${PROMO.lleva}, paga ${PROMO.paga})` : `<b>−${CONFIG.pctExplosion}%</b>`;
   $("upsell").innerHTML = !n ? ""
     : state.exploded ? (PROMO && n<PROMO.lleva ? `Suma <b>${latas(PROMO.lleva-n)}</b> más y llévate <b>${PROMO.lleva} por ${money(PROMO.paga*CONFIG.precio)}</b>.`
         : PROMO ? (pr.tag===PROMO_TXT&&n===PROMO.lleva ? `${PROMO_TXT}: uno por pedido.` : `Tu TaKáBOOM también vale el <b>${PROMO_TXT}</b>: ${PROMO.lleva} latas por $${PROMO.paga*CONFIG.precio}.`)+(n>PROMO.lleva?`<br><button type="button" class="solo5" id="solo5">Quedarme con ${PROMO.lleva} por $${PROMO.paga*CONFIG.precio%1?(PROMO.paga*CONFIG.precio).toFixed(2):PROMO.paga*CONFIG.precio}</button>`:"") : "")
+    : NAV && n<NAV.pack ? `Suma <b>${latas(NAV.pack-n)}</b> más y llévate <b>${NAV.pack} por $${NAV.precio}</b>: Amigo secreto TaKá, hasta el 24 dic.`
     : CONFIG.caja && n>=CONFIG.caja.latas-6 && n<CONFIG.caja.latas ? `Suma <b>${latas(CONFIG.caja.latas-n)}</b> y es <b>Caja Grupo ${CONFIG.caja.latas}: $${CONFIG.caja.precio}</b> con envío incluido.`
     : next ? `Suma <b>${latas(next.latas-n)}</b> más y te llevas <b>−${next.pct}%</b>. O haz explotar una lata: ${BT}.`
     : `Haz explotar una lata: ${BT}.`;
@@ -589,6 +602,7 @@ function mezcla(L){ const n=totalCans(); if(!n){ state.cart.pina=Math.ceil(L/2);
 function renderPromos(pr){
   const box=$("promos"); if(!box) return; const n=totalCans(), C=CONFIG.caja;
   const chips=[];
+  if(NAV) chips.push(`<button type="button" class="pchip caja nav${pr.tag===NAV.tag?" on":""}" data-p="navidad"><b>Amigo secreto TaKá · ${NAV.pack} por $${NAV.precio}</b><span>${pr.tag===NAV.tag?"Aplicada · Navidad, hasta el 24 dic":"Navidad, hasta el 24 dic · toca para armarla"}</span></button>`);
   if(C) chips.push(`<button type="button" class="pchip caja${pr.tag==="Caja"+C.latas?" on":""}" data-p="caja"><b>Caja Grupo ${C.latas} · $${C.precio}</b><span>${pr.tag==="Caja"+C.latas?"Aplicada · envío incluido":"Envío incluido · toca para armarla"}</span></button>`);
   if(CONFIG.regalos){
     chips.push(`<button type="button" class="pchip${state.regalo==="vacias"?" on":""}" data-p="vacias" aria-pressed="${state.regalo==="vacias"}"><b>5 vacías = 1 llena</b><span>Entregas 5 latas vacías + story @drinkbataka</span></button>`);
@@ -600,6 +614,7 @@ function renderPromos(pr){
 }
 $("promos").addEventListener("click",async e=>{ const b=e.target.closest(".pchip"); if(!b) return; const k=b.dataset.p;
   if(k==="caja"){ mezcla(CONFIG.caja.latas); }
+  else if(k==="navidad"&&NAV){ mezcla(NAV.pack); }
   else if(k==="vacias"||k==="pana"){ state.regalo = state.regalo===k ? null : k; }
   else if(k==="invita"){ const url=`${location.origin}/?pana=1&o=pana`, txt=`TaKá! Prueba BaTaKá: entra a ${url}, haz TaKáBOOM y en tu primer pedido de 6 latas o más di que te invité. Los dos ganamos 1 lata 🍍🍒`;
     logEvento({tipo:"invita"});
