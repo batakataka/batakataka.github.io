@@ -3261,5 +3261,514 @@
   ],
   "caption": "",
   "aprobado": true
+ },
+ {
+  "id": "w48_S-lun-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-23T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-lun-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_lun-1",
+  "tipo": "post",
+  "fecha": "2026-11-23T09:00:00-05:00",
+  "imagenes": [
+   "w48_lun-1_0900_lunes_pina.jpg"
+  ],
+  "caption": "Lunes, en amarillo 🍍\nEmpieza la semana con lo tuyo y una Piña de 500 ml, sin azúcar añadida. $3 la lata · 6 latas $16,20 · 12 latas $30,60.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_lun-2",
+  "tipo": "carrusel",
+  "fecha": "2026-11-23T13:00:00-05:00",
+  "imagenes": [
+   "w48_lun-2_1300_pina_o_cereza_1.jpg",
+   "w48_lun-2_1300_pina_o_cereza_2.jpg",
+   "w48_lun-2_1300_pina_o_cereza_3.jpg",
+   "w48_lun-2_1300_pina_o_cereza_4.jpg"
+  ],
+  "caption": "¿Piña o cereza? 🍍🍒\nNos preguntaron cuál recomendamos. Piña es tropical y brillante; cereza, más intensa. ¿No te decides? Mitad y mitad: puedes mezclar en cualquier pack. 6 latas $16,20 · 12 latas $30,60.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-lun-2_1315",
+  "tipo": "story",
+  "fecha": "2026-11-23T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-lun-2_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_lun-3",
+  "tipo": "post",
+  "fecha": "2026-11-23T19:00:00-05:00",
+  "imagenes": [
+   "w48_lun-3_1900_estado_creativo.jpg"
+  ],
+  "caption": "Estado creativo 🍒\nPara seguir el beat de lo tuyo: el proyecto, la tesis, el diseño, el negocio que estás armando. Bataká no es para aguantar, es para entrar en tu ritmo.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-lun-3_1915",
+  "tipo": "story",
+  "fecha": "2026-11-23T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-lun-3_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mar-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-24T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-mar-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mar-1",
+  "tipo": "post",
+  "fecha": "2026-11-24T09:00:00-05:00",
+  "imagenes": [
+   "w48_mar-1_0900_si_no.jpg"
+  ],
+  "caption": "Lo que sí lleva y lo que no 🍍\nSí: cafeína, taurina y L-citrulina (de ahí el NOx). No: azúcar añadida; está endulzada con sucralosa. Las cantidades exactas están en la etiqueta.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mar-2",
+  "tipo": "post",
+  "fecha": "2026-11-24T13:00:00-05:00",
+  "imagenes": [
+   "w48_mar-2_1300_cereza.jpg"
+  ],
+  "caption": "Cereza 🍒\nEl sabor con más carácter de la casa. 500 ml, sin azúcar añadida, a $3 la lata; 6 latas $16,20.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mar-2_1315",
+  "tipo": "story",
+  "fecha": "2026-11-24T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-mar-2_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mar-3",
+  "tipo": "post",
+  "fecha": "2026-11-24T19:00:00-05:00",
+  "imagenes": [
+   "w48_mar-3_1900_sala_secreta.jpg"
+  ],
+  "caption": "En el juego hay una sala escondida 🍍🍒\nVarios celulares tocan un ritmo juntos. ¿Cómo se entra? Sigue dándole a las dos latas en batakataka.github.io… Y si haces explotar una, TaKáBOOM: −20% o 5 latas por $9.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mar-3_1915",
+  "tipo": "story",
+  "fecha": "2026-11-24T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-mar-3_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mie-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-25T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-mie-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mie-1",
+  "tipo": "post",
+  "fecha": "2026-11-25T09:00:00-05:00",
+  "imagenes": [
+   "w48_mie-1_0900_pina_altura.jpg"
+  ],
+  "caption": "Piña de altura 🍍\nPara la ciudad que trabaja a 2.850 metros. Lata de 500 ml, sin azúcar añadida, a $3.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mie-2",
+  "tipo": "post",
+  "fecha": "2026-11-25T13:00:00-05:00",
+  "imagenes": [
+   "w48_mie-2_1300_envios_ecuador.jpg"
+  ],
+  "caption": "Del valle a todo Ecuador 🏷️\n¿Cuánto cuesta el envío? Si tu pedido pasa de $50, va incluido. Si es de $50 o menos, va por Servientrega y el valor depende de tu ciudad: te lo confirmamos antes de pagar. Envío o retiro, previa verificación de tus datos.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mie-2_1315",
+  "tipo": "story",
+  "fecha": "2026-11-25T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-mie-2_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_mie-3",
+  "tipo": "post",
+  "fecha": "2026-11-25T19:00:00-05:00",
+  "imagenes": [
+   "w48_mie-3_1900_por_que_nox.jpg"
+  ],
+  "caption": "¿Por qué NOx? 🍍\nPor la L-citrulina. Bataká lleva cafeína, taurina y L-citrulina, sin azúcar añadida. Las cantidades exactas están en la etiqueta.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-mie-3_1915",
+  "tipo": "story",
+  "fecha": "2026-11-25T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-mie-3_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-jue-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-26T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-jue-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_jue-1",
+  "tipo": "post",
+  "fecha": "2026-11-26T09:00:00-05:00",
+  "imagenes": [
+   "w48_jue-1_0900_tracklist.jpg"
+  ],
+  "caption": "Tracklist de un jueves 🍒\nCorreos, reunión, almuerzo, bloque profundo y la entrega. Pon tu Bataká en la pista 04 y el resto suena solo.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_jue-2",
+  "tipo": "carrusel",
+  "fecha": "2026-11-26T13:00:00-05:00",
+  "imagenes": [
+   "w48_jue-2_1300_quito_ritmo_1.jpg",
+   "w48_jue-2_1300_quito_ritmo_2.jpg",
+   "w48_jue-2_1300_quito_ritmo_3.jpg",
+   "w48_jue-2_1300_quito_ritmo_4.jpg"
+  ],
+  "caption": "Quito en su ritmo 🍍🍒\nUna ciudad a 2.850 metros, el valle de Cumbayá y Tumbaco, y el camino de vuelta a casa. Nuestra primera parada fue El Punto, en la gasolinera de Miravalle.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-jue-2_1315",
+  "tipo": "story",
+  "fecha": "2026-11-26T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-jue-2_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_jue-3",
+  "tipo": "post",
+  "fecha": "2026-11-26T19:00:00-05:00",
+  "imagenes": [
+   "w48_jue-3_1900_obra_cereza.jpg"
+  ],
+  "caption": "Obra en exhibición 🍒\nCereza, 2026. Lata de aluminio de 500 ml, sin azúcar añadida. Se mira y también se toma: $3 la lata.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-jue-3_1915",
+  "tipo": "story",
+  "fecha": "2026-11-26T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-jue-3_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-27T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-vie-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_vie-1",
+  "tipo": "post",
+  "fecha": "2026-11-27T09:00:00-05:00",
+  "imagenes": [
+   "w48_vie-1_0900_viernes_pina.jpg"
+  ],
+  "caption": "Viernes, Piña 🍍\nCierra la semana con lo que empezaste. 500 ml a $3; 12 latas $30,60.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-2_1100",
+  "tipo": "story",
+  "fecha": "2026-11-27T11:00:00-05:00",
+  "imagenes": [
+   "w48_S-vie-2_1100.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-3_1101",
+  "tipo": "story",
+  "fecha": "2026-11-27T11:01:00-05:00",
+  "imagenes": [
+   "w48_S-vie-3_1101.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-4_1102",
+  "tipo": "story",
+  "fecha": "2026-11-27T11:02:00-05:00",
+  "imagenes": [
+   "w48_S-vie-4_1102.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_vie-2",
+  "tipo": "post",
+  "fecha": "2026-11-27T13:00:00-05:00",
+  "imagenes": [
+   "w48_vie-2_1300_cuantos_toques.jpg"
+  ],
+  "caption": "¿Cuántos toques aguantas? 🏷️\nEn batakataka.github.io cada toque suma una lata. Dale muchos seguidos hasta que explote: TaKáBOOM = −20% o 5 latas por $9 (uno por pedido). Comenta BOOM cuando lo logres.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-5_1315",
+  "tipo": "story",
+  "fecha": "2026-11-27T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-vie-5_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_vie-3",
+  "tipo": "post",
+  "fecha": "2026-11-27T19:00:00-05:00",
+  "imagenes": [
+   "w48_vie-3_1900_lista_amigo_secreto.jpg"
+  ],
+  "caption": "La lista del amigo secreto 🏷️\nAlgo que sí se usa, que no sea otra taza y de menos de $20: 6 latas por $15, con piña y cereza mezcladas como quieras. Amigo secreto TaKá, hasta el 24 de diciembre.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-vie-6_1915",
+  "tipo": "story",
+  "fecha": "2026-11-27T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-vie-6_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-28T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-sab-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_sab-1",
+  "tipo": "carrusel",
+  "fecha": "2026-11-28T09:00:00-05:00",
+  "imagenes": [
+   "w48_sab-1_0900_preguntas_1.jpg",
+   "w48_sab-1_0900_preguntas_2.jpg",
+   "w48_sab-1_0900_preguntas_3.jpg",
+   "w48_sab-1_0900_preguntas_4.jpg"
+  ],
+  "caption": "Preguntas de la semana 🍍🍒\n¿Dónde lo retiro? Envío o retiro, previa verificación de tus datos. ¿Cómo pago? Por transferencia: al confirmar tu pedido por WhatsApp te pasamos los datos. ¿Puedo mezclar sabores? Sí, en cualquier pack.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-2_1100",
+  "tipo": "story",
+  "fecha": "2026-11-28T11:00:00-05:00",
+  "imagenes": [
+   "w48_S-sab-2_1100.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_sab-2",
+  "tipo": "post",
+  "fecha": "2026-11-28T13:00:00-05:00",
+  "imagenes": [
+   "w48_sab-2_1300_sabado_cereza.jpg"
+  ],
+  "caption": "Sábado, Cereza 🍒\nPara el proyecto que avanza los fines de semana. 500 ml a $3; 6 latas $16,20.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-3_1315",
+  "tipo": "story",
+  "fecha": "2026-11-28T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-sab-3_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-4_1600",
+  "tipo": "story",
+  "fecha": "2026-11-28T16:00:00-05:00",
+  "imagenes": [
+   "w48_S-sab-4_1600.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-5_1601",
+  "tipo": "story",
+  "fecha": "2026-11-28T16:01:00-05:00",
+  "imagenes": [
+   "w48_S-sab-5_1601.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_sab-3",
+  "tipo": "post",
+  "fecha": "2026-11-28T19:00:00-05:00",
+  "imagenes": [
+   "w48_sab-3_1900_tu_escritorio.jpg"
+  ],
+  "caption": "Muéstranos tu escritorio 🍍🍒\nSube una story de tu espacio de trabajo con tu Bataká y etiqueta a @drinkbataka. Queremos ver dónde pasa lo tuyo.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-sab-6_1915",
+  "tipo": "story",
+  "fecha": "2026-11-28T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-sab-6_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-dom-1_0830",
+  "tipo": "story",
+  "fecha": "2026-11-29T08:30:00-05:00",
+  "imagenes": [
+   "w48_S-dom-1_0830.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_dom-1",
+  "tipo": "post",
+  "fecha": "2026-11-29T09:00:00-05:00",
+  "imagenes": [
+   "w48_dom-1_0900_edicion_domingo.jpg"
+  ],
+  "caption": "Edición domingo 🍍🍒\nEl proyecto de los domingos, Quito a 2.850 metros y la pregunta del mes: ¿piña o cereza?\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_dom-2",
+  "tipo": "post",
+  "fecha": "2026-11-29T13:00:00-05:00",
+  "imagenes": [
+   "w48_dom-2_1300_tu_logo.jpg"
+  ],
+  "caption": "Tu logo en la caja 🏷️\n¿Regalo de fin de año para tu equipo? La Caja Grupo 24 con el logo de tu empresa sale $58 con envío incluido. ¿Tienes tienda, cafetería o coworking? También tenemos precio para negocios: escríbenos y el equipo te cuenta.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-dom-2_1315",
+  "tipo": "story",
+  "fecha": "2026-11-29T13:15:00-05:00",
+  "imagenes": [
+   "w48_S-dom-2_1315.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-dom-3_1600",
+  "tipo": "story",
+  "fecha": "2026-11-29T16:00:00-05:00",
+  "imagenes": [
+   "w48_S-dom-3_1600.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-dom-4_1601",
+  "tipo": "story",
+  "fecha": "2026-11-29T16:01:00-05:00",
+  "imagenes": [
+   "w48_S-dom-4_1601.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
+ },
+ {
+  "id": "w48_dom-3",
+  "tipo": "post",
+  "fecha": "2026-11-29T19:00:00-05:00",
+  "imagenes": [
+   "w48_dom-3_1900_cuando_si_no.jpg"
+  ],
+  "caption": "Cuándo sí y cuándo no 🍍🍒\nSí: para estudiar, el trabajo concentrado, tu proyecto o el bajón de la tarde. No: con alcohol, antes, durante o después de hacer deporte, ni para menores de 18. Advertencias completas en la etiqueta.\nPide por WhatsApp desde batakataka.github.io/?o=ig (link en el perfil).\nSolo para mayores de 18.\n#bataka #energydrink #quito #cumbaya #ecuador",
+  "aprobado": true
+ },
+ {
+  "id": "w48_S-dom-5_1915",
+  "tipo": "story",
+  "fecha": "2026-11-29T19:15:00-05:00",
+  "imagenes": [
+   "w48_S-dom-5_1915.jpg"
+  ],
+  "caption": "",
+  "aprobado": true
  }
 ]
