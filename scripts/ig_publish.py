@@ -38,14 +38,16 @@ def call(method, path, params=None, base=API):
         raise SystemExit(f"Error {e.code} en {path}: {body}")
 
 
-def wait_ready(cid, tries=30):
+def wait_ready(cid, tries=30, video=False):
+    if video:
+        tries = max(tries, 60)
     for _ in range(tries):
         st = call("GET", cid, {"fields": "status_code"}).get("status_code")
         if st == "FINISHED":
             return
         if st in ("ERROR", "EXPIRED"):
             raise SystemExit(f"Contenedor {cid} falló: {st}")
-        time.sleep(5)
+        time.sleep(10 if video else 5)
     raise SystemExit(f"Contenedor {cid} no terminó a tiempo")
 
 
@@ -53,12 +55,30 @@ def url_of(img):
     return img if img.startswith("http") else f"{SITE}/ig/{img}"
 
 
+VIDEO_EXT = (".mp4", ".mov")
+
+
+def is_video(f):
+    return f.lower().endswith(VIDEO_EXT)
+
+
 def publish(item):
     kind = item.get("tipo", "post").lower()
     imgs = item["imagenes"]
     caption = item.get("caption", "")
+    video = False
     if kind == "story":
-        cid = call("POST", f"{USER_ID}/media", {"image_url": url_of(imgs[0]), "media_type": "STORIES"})["id"]
+        video = is_video(imgs[0])
+        p = {"video_url": url_of(imgs[0])} if video else {"image_url": url_of(imgs[0])}
+        p["media_type"] = "STORIES"
+        cid = call("POST", f"{USER_ID}/media", p)["id"]
+    elif kind == "reel" or (len(imgs) == 1 and is_video(imgs[0])):
+        # Reels: video servido por GitHub Pages; portada_ms elige el cuadro de la portada.
+        video = True
+        p = {"media_type": "REELS", "video_url": url_of(imgs[0]), "caption": caption, "share_to_feed": "true"}
+        if item.get("portada_ms") is not None:
+            p["thumb_offset"] = str(item["portada_ms"])
+        cid = call("POST", f"{USER_ID}/media", p)["id"]
     elif len(imgs) > 1 or kind == "carrusel":
         kids = []
         for im in imgs:
@@ -68,7 +88,7 @@ def publish(item):
         cid = call("POST", f"{USER_ID}/media", {"media_type": "CAROUSEL", "children": ",".join(kids), "caption": caption})["id"]
     else:
         cid = call("POST", f"{USER_ID}/media", {"image_url": url_of(imgs[0]), "caption": caption})["id"]
-    wait_ready(cid)
+    wait_ready(cid, video=video)
     return call("POST", f"{USER_ID}/media_publish", {"creation_id": cid})["id"]
 
 
